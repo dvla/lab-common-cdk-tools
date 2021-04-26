@@ -1,0 +1,27 @@
+node_modules/
+.serverless/
+.vscode/
+
+npm-debug.*
+yarn-debug.log*
+yarn-error.log*
+*debug.log
+
+# misc
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+secrets*.*sh
+
+#ide
+.idea
+*.iml
+
+# macOS
+**/.DS_Store
+
+coverage/
+dist/
+jest-stare/
