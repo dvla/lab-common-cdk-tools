@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests Policy statements Tests services 1`] = `
+Object {
+  "Action": "comprehend:*",
+  "Effect": "Allow",
+  "Resource": "*",
+}
+`;
+
+exports[`Tests Policy statements Tests services 2`] = `
+Object {
+  "Action": "rekognition:*",
+  "Effect": "Allow",
+  "Resource": "*",
+}
+`;
+
+exports[`Tests Policy statements Tests services 3`] = `
+Object {
+  "Action": "textract:*",
+  "Effect": "Allow",
+  "Resource": "*",
+}
+`;

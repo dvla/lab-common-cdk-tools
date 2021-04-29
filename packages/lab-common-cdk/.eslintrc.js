@@ -13,22 +13,25 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:import/typescript',
         'plugin:jest/recommended',
-        'prettier'  
+        'prettier'
     ],
     env: {
         node: true,
         browser: false,
         jest: true,
     },
-    ignorePatterns: ['dist', 'node_modules', '.*.js', '*config.js'],
+    ignorePatterns: ['dist', 'coverage', 'node_modules', '.*.js', '*.d.ts', '*config.js'],
     rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-use-before-define': 'warn',
+        '@typescript-eslint/no-unsafe-call': 'warn',
         'import/no-extraneous-dependencies': ['error'],
         'import/no-self-import': 'error',
         'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
         'import/prefer-default-export': 'off',
-        'max-len': ["error", { "code": 120 }],
-        'indent': ["error", 4]
+        'max-len': ["warn", { "code": 120 }],
+        'indent': ["error", 4],
+        "quotes": ["warn", "single", { "avoidEscape": true }],
+        "object-curly-spacing": ["warn", "always"]
     },
 };

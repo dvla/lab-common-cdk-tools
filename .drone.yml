@@ -1,0 +1,68 @@
+kind: pipeline
+type: docker
+name: ci
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: install
+    pull: if-not-exists
+    image: &base--image node:14.16.1-alpine3.12
+    commands:
+      - npm config set unsafe-perm true
+      - npm ci
+      - npm run bootstrap-ci
+
+#  - name: outdated
+#    pull: if-not-exists
+#    image: *base--image
+#    failure: ignore
+#    commands:
+#      - npm run outdated
+#    depends_on:
+#      - install
+#    environment: *env-npm-nexus
+
+  - name: audit
+    pull: if-not-exists
+    image: *base--image
+    failure: ignore
+    commands:
+      - npm run audit
+    depends_on:
+      - install
+
+  - name: build
+    pull: if-not-exists
+    image: *base--image
+    commands:
+      - npm run build
+    depends_on:
+      - install
+
+  - name: lint
+    pull: if-not-exists
+    image: *base--image
+    commands:
+      - npm run lint
+    depends_on:
+      - build
+
+  - name: test
+    pull: if-not-exists
+    image: *base--image
+    commands:
+      - npm run test
+    depends_on:
+      - build
+
+  - name: publish
+    image: *base--image
+    commands:
+      - npm publish --dry-run
+    depends_on:
+      - test
+    when:
+      branch: [master]

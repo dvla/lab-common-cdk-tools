@@ -1,12 +1,18 @@
 {
   "name": "root",
   "private": true,
+  "license": "MIT",
+  "description": "DVLA Emerging Tech Lab CDK Tools",
   "scripts": {
-    "prepublish": "tsc",
-    "lint": "lerna exec -- eslint . --ext .js,.jsx,.ts,.tsx",
+    "audit": "lerna exec -- npm audit --audit-level=moderate",
+    "build": "lerna run tsc",
+    "outdated": "lerna exec -- npm outdated",
+    "lint": "lerna run lint",
     "test": "lerna run test",
     "typecheck": "lerna exec -- tsc --noEmit",
-    "publish": "lerna publish"
+    "bootstrap-ci": "lerna bootstrap",
+    "version": "lerna version --no-push",
+    "publish": "lerna publish from-package --yes"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
