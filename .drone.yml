@@ -60,8 +60,10 @@ steps:
 
   - name: publish
     image: *base--image
+    environment: &env-npm-nexus
+      NPM_CONFIG_REGISTRY: https://nexus.tooling.dvla.gov.uk/repository/npm-group/
     commands:
-      - npm publish --dry-run
+      - npm run publish
     depends_on:
       - test
     when:
