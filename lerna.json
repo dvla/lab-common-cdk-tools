@@ -2,5 +2,10 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "version": {
+      "message": "Increment new version %s (lerna)"
+    }
+  },
   "version": "0.0.1"
 }
