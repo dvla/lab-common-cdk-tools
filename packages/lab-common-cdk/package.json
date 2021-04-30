@@ -48,7 +48,8 @@
     "test": "/src/__tests__"
   },
   "files": [
-    "dist"
+    "dist",
+    "!dist/__tests__/"
   ],
   "publishConfig": {
     "registry": "https://nexus.tooling.dvla.gov.uk/repository/npm-private"

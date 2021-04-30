@@ -7,7 +7,7 @@ export const BUCKET_DEFAULTS = {
     encryption: s3.BucketEncryption.S3_MANAGED,
     blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     removalPolicy: cdk.RemovalPolicy.DESTROY,
-};
+} as Partial<s3.BucketProps>;
 
 /**
  * Additional parameters used by the Bucket creation function.

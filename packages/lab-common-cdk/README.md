@@ -2,3 +2,41 @@
 
 ## Getting Started
 
+This module provides:
+
+* lab - Core functions to create CDK constructs with sensible defaults following best practice.
+* labconst - Constants for use with the CDK, e.g. policy statements or services.
+* labutil - Utility functions, e.g `getStage`, `tag`.
+
+### Quick Start
+
+1. Import the module, `import { lab, labutil } from 'lab-common-cdk';`
+2. Start with a standard construct, e.g. `new s3.Bucket`
+3. Remove the `new` and add the lab prefix. , e.g. `lab.s3.Bucket`
+
+You should now be able to use the function.
+
+### Implementation
+Functions are implemented to match the style of the default contructs, i.e.
+`(scope, id, props)`.  The 3rd parameter `props` will match the `props` parameter of the construct.
+You can specify values in `props` specific to your project that will override the defaults.
+e.g. to change the lambda handler and memory settings you could specify:
+```
+{
+    handler: 'index.specialFunc',
+    memorySize: 512,
+}
+```
+
+For each function, there may be a 4th parameter to configure additional features which are specific to that
+construct, e.g. to enable cors.
+```
+{ enableCors : true }
+```
+
+#### Available Constructs
+
+| Function | Returns
+| --- | --- |
+| `lab.s3.Bucket(scope, id, props, params)`| `s3.Bucket` |
+| `lab.lambda.Function(scope, id, props, params)`| `lambda.Function` |

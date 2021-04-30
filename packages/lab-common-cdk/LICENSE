@@ -1,20 +1,4 @@
-# DVLA Emerging Tech Lab CDK Tools!
-
-## Projects
-
-- [Lab Common CDK](packages/lab-common-cdk): The main cdk tools.
-- [TODO] Lab Constructs - Higher Level constructs similar to [CDK Patterns](https://cdkpatterns.com/).
-- [TODO] Lab Validation - Standard rules to validate CDK projects.
-
-### Some useful reference CDK resources
-
-- [Open CDK Guide](https://github.com/kevinslin/open-cdk)
-- [Awesome CDK](https://github.com/kolomied/awesome-cdk)
-- [CDK Patterns](https://cdkpatterns.com/)
-- [CDK dependencies in L3 constructs](https://dev.to/udondan/correctly-defining-dependencies-in-l3-cdk-constructs-45p)
-
-## License
-The MIT License (MIT)
+MIT License
 
 Copyright (c) 2021 DVLA
 

@@ -13,7 +13,7 @@ export const LAMBDA_DEFAULTS = {
     timeout: cdk.Duration.seconds(60),
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
-};
+} as Partial<lambda.FunctionProps>;
 
 /**
  * Get the root path where the lambdas are stored.
@@ -34,6 +34,9 @@ export interface FunctionParams extends StageAware, MergeAware {
 /**
  * Creates a standard Lambda function, using sensible defaults where possible.
  * The optional custom FunctionProps will override the default parameters.
+ * By default, the path to your assets can be specified globally via `process.env.CDK_ASSET_PATH` or via
+ * the 'assetPath' context variable.  Alternatively, specify your own assets with the `code` FunctionProp.
+ *
  * @param scope - the stack
  * @param id - a meaningful name
  * @param props - Optional custom FunctionProps to use with the lambda.
