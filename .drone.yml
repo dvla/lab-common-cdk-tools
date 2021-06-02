@@ -9,7 +9,7 @@ platform:
 steps:
   - name: install
     pull: if-not-exists
-    image: &base--image node:14.16.1-alpine3.12
+    image: &base--image node:lts
     commands:
       - npm config set unsafe-perm true
       - npm ci
