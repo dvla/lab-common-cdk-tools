@@ -18,7 +18,7 @@ class TestStack extends cdk.Stack {
 }
 
 /**
- * More Adanced test stack
+ * More Advanced test stack
  */
 class AdvancedTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -101,7 +101,7 @@ describe('Tests bucket core functionality', () => {
             CorsConfiguration: {
                 CorsRules: [{
                     'AllowedHeaders': ['*'],
-                    'AllowedMethods': ['PUT', 'GET'],
+                    'AllowedMethods': ['PUT', 'POST', 'GET'],
                     'AllowedOrigins': ['*'],
                     'MaxAge': 3600
                 }]

@@ -42,7 +42,6 @@ export const Bucket = (scope: cdk.Construct, id: string, props?:  Partial<s3.Buc
     const stage = getStage(scope, params);
     const bucketName = stage ? `${id}-${stage}` : id;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const bucketProps: any = {
         bucketName: bucketName.toLowerCase(),
     };
@@ -50,9 +49,8 @@ export const Bucket = (scope: cdk.Construct, id: string, props?:  Partial<s3.Buc
     const expireContent = params?.expireContent ?? true;
 
     if (enableCors) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         bucketProps.cors = [{
-            allowedMethods: [s3.HttpMethods.PUT, s3.HttpMethods.GET],
+            allowedMethods: [s3.HttpMethods.PUT, s3.HttpMethods.POST, s3.HttpMethods.GET],
             allowedOrigins: ['*'],
             allowedHeaders: ['*'],
             maxAge: 3600,
@@ -60,15 +58,11 @@ export const Bucket = (scope: cdk.Construct, id: string, props?:  Partial<s3.Buc
     }
 
     if (expireContent) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         bucketProps.lifecycleRules = [{
             expiration: cdk.Duration.days(14),
         }]
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
     const defaultProps = mergeProperties(BUCKET_DEFAULTS, bucketProps);
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
     const createdBucket = new s3.Bucket(scope, id, mergeProperties(defaultProps, props));
     return createdBucket;
 };

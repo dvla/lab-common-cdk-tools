@@ -40,3 +40,6 @@ construct, e.g. to enable cors.
 | --- | --- |
 | `lab.s3.Bucket(scope, id, props, params)`| `s3.Bucket` |
 | `lab.lambda.Function(scope, id, props, params)`| `lambda.Function` |
+| `lab.lambda.NodejsFunction(scope, id, props, params)`| `nodejs.NodejsFunction` |
+| `lab.sfn.StateMachine(scope, id, props, params)`| `sfn.StateMachine` |
+

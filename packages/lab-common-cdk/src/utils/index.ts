@@ -22,6 +22,18 @@ export const getStage = (scope: cdk.IConstruct, stageAware? : StageAware): strin
 };
 
 /**
+ * Returns a unique name, taking account of the stage if required.
+ * Concatenates the stage to the id, otherwise just returns the id.
+ * @param scope - a cdk stack
+ * @param id - a unique id
+ * @param stageAware - should the stage be used
+ */
+export const getStageAwareName = (scope: cdk.IConstruct, id: string, stageAware? : StageAware, ): string => {
+    const stage = getStage(scope, stageAware);
+    return stage ? `${id}-${stage}` : id;
+};
+
+/**
  * Add default tags to a stack.
  * @param scope - a stack or construct
  */

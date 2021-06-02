@@ -25,6 +25,8 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-use-before-define': 'warn',
         '@typescript-eslint/no-unsafe-call': 'warn',
+        '@typescript-eslint/no-unsafe-assignment': 'warn',
+        '@typescript-eslint/no-unsafe-member-access': 'warn',
         'import/no-extraneous-dependencies': ['error'],
         'import/no-self-import': 'error',
         'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
