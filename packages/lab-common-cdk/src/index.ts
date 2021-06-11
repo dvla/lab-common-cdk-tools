@@ -1,5 +1,7 @@
-import * as lab from './core';
-import * as labconst from './constants';
-import * as labutil from './utils';
+import * as constants from './constants';
+import * as utils from './utils';
+import * as lambda from './core/lambda';
+import * as s3 from './core/s3';
+import * as sfn from './core/sfn';
 
-export { lab, labconst, labutil };
+export { lambda, s3, sfn, constants, utils };

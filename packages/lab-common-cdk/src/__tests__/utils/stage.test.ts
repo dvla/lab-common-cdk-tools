@@ -1,6 +1,6 @@
 import '@aws-cdk/assert/jest';
 import * as cdk from '@aws-cdk/core';
-import { labutil } from '../..';
+import * as lab from '../..';
 
 describe('Tests root core functionality', () => {
     test('Tests get default stage', () => {
@@ -9,8 +9,8 @@ describe('Tests root core functionality', () => {
         const stack = new cdk.Stack(app, 'MyTestStack');
 
         // Then
-        expect(labutil.getStage(app)).toBe('dev');
-        expect(labutil.getStage(stack)).toBe('dev');
+        expect(lab.utils.getStage(app)).toBe('dev');
+        expect(lab.utils.getStage(stack)).toBe('dev');
     });
 
     test('Tests get default stage from process', () => {
@@ -21,8 +21,8 @@ describe('Tests root core functionality', () => {
         const stack = new cdk.Stack(app, 'MyTestStack');
 
         // Then
-        expect(labutil.getStage(app)).toBe(testStage);
-        expect(labutil.getStage(stack)).toBe(testStage);
+        expect(lab.utils.getStage(app)).toBe(testStage);
+        expect(lab.utils.getStage(stack)).toBe(testStage);
     });
 
     test('Tests get default stage with context', () => {
@@ -34,8 +34,8 @@ describe('Tests root core functionality', () => {
         const stack = new cdk.Stack(app, 'MyTestStack');
 
         // Then
-        expect(labutil.getStage(app)).toBe(testStage);
-        expect(labutil.getStage(stack)).toBe(testStage);
+        expect(lab.utils.getStage(app)).toBe(testStage);
+        expect(lab.utils.getStage(stack)).toBe(testStage);
     });
 
     test('Tests stage aware', () => {
@@ -43,6 +43,6 @@ describe('Tests root core functionality', () => {
         const app = new cdk.App();
 
         // Then
-        expect(labutil.getStage(app, { useStage : false })).toBe('');
+        expect(lab.utils.getStage(app, { useStage : false })).toBe('');
     });
 });

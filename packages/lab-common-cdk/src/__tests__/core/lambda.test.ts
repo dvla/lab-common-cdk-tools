@@ -3,7 +3,7 @@ import '@aws-cdk/assert/jest';
 import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as logs from '@aws-cdk/aws-logs';
-import { lab, labutil } from '../..';
+import * as lab from '../..';
 
 /**
  * Basic Test stack
@@ -12,7 +12,7 @@ class TestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const lamb = lab.lambda.Function(this, 'test-func');
     }
@@ -25,7 +25,7 @@ class AdvancedTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const lamb = lab.lambda.Function(this, 'test-func', {
             handler: 'index.specialFunc',
@@ -44,7 +44,7 @@ class CustomTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const lamb = lab.lambda.Function(this, 'src');
     }
@@ -63,7 +63,7 @@ describe('Tests lambda core functionality', () => {
         const stack = new TestStack(app, 'MyTestStack');
 
         // Then
-        expect(labutil.getStage(app)).toBe('basicstack');
+        expect(lab.utils.getStage(app)).toBe('basicstack');
         expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
             FunctionName: 'test-func-basicstack',
             Handler: 'index.handler',

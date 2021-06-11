@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
 import '@aws-cdk/assert/jest';
 import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as logs from '@aws-cdk/aws-logs';
-import { lab, labutil } from '../..';
+import * as lab from '../..';
 
 /**
  * Basic Test stack
@@ -12,7 +10,7 @@ class TestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const lamb = lab.lambda.NodejsFunction(this, 'simple-func');
     }
@@ -25,7 +23,7 @@ class AdvancedTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const lamb = lab.lambda.NodejsFunction(this, 'test-func', {
             functionName: 'nice-func',
@@ -50,7 +48,7 @@ describe('Tests NodeJs lambda core functionality', () => {
         const stack = new TestStack(app, 'MyTestStack');
 
         // Then
-        expect(labutil.getStage(app)).toBe('basicstack');
+        expect(lab.utils.getStage(app)).toBe('basicstack');
         expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
             Handler: 'index.handler',
             MemorySize: 128,

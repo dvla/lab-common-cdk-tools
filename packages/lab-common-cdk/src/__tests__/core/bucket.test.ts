@@ -2,7 +2,7 @@
 import '@aws-cdk/assert/jest';
 import * as cdk from '@aws-cdk/core';
 import * as s3 from '@aws-cdk/aws-s3';
-import { lab, labutil } from '../..';
+import * as lab from '../..';
 
 /**
  * Basic Test stack
@@ -11,8 +11,7 @@ class TestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
-
+        lab.utils.tag(this);
         const buck = lab.s3.Bucket(this, 'myBUCK');
     }
 }
@@ -24,8 +23,7 @@ class AdvancedTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
-
+        lab.utils.tag(this);
         const buck = lab.s3.Bucket(this, 'theBUCK', {}, { enableCors : true });
     }
 }
@@ -37,8 +35,7 @@ class CustomTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
-
+        lab.utils.tag(this);
         const buck = lab.s3.Bucket(this, 'theBUCK', {
             encryption: s3.BucketEncryption.KMS_MANAGED,
             bucketName : 'my-custom-bucket',

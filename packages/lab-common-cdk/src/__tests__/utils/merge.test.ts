@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call */
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as logs from '@aws-cdk/aws-logs';
-import { labutil, lab } from '../..';
+import * as lab from '../..';
 
 describe('Tests Merging strategies', () => {
 
     test('Tests basics', () => {
-        let result = labutil.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {});
+        let result = lab.utils.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {});
         expect(result).toMatchObject( {
             runtime: lambda.Runtime.NODEJS_12_X,
             tracing: lambda.Tracing.ACTIVE,
             logRetention: logs.RetentionDays.ONE_WEEK,
         });
-        result = labutil.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {
+        result = lab.utils.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {
             runtime: lambda.Runtime.NODEJS_14_X,
             memorySize: 256,
             functionName: 'testFunc',
@@ -28,7 +28,7 @@ describe('Tests Merging strategies', () => {
     });
 
     test('Tests adding nested nodes', () => {
-        let result = labutil.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {
+        let result =  lab.utils.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {
             logRetentionRetryOptions : { maxRetries : 3 }
         });
         expect(result).toMatchObject( {
@@ -36,7 +36,7 @@ describe('Tests Merging strategies', () => {
             logRetentionRetryOptions : { maxRetries : 3 }
         });
         // Pass in the result of the previous merge, so its now a 3 way merge.
-        result = labutil.mergeProperties(result, {
+        result = lab.utils.mergeProperties(result, {
             logRetentionRetryOptions : { maxRetries : 5 }
         });
         expect(result).toMatchObject( {
@@ -46,10 +46,10 @@ describe('Tests Merging strategies', () => {
     });
 
     test('Merge arrays', () => {
-        let result = labutil.mergeProperties({ a: true, values: [10, 20] }, { b: true, values: [15, 35] });
+        let result = lab.utils.mergeProperties({ a: true, values: [10, 20] }, { b: true, values: [15, 35] });
         expect(result).toMatchObject({ a: true, b: true, values: [10, 20, 15, 35] });
 
-        result = labutil.mergeProperties({ a: true, values: [10, 20] }, { b: true, values: [15, 35] }, false);
+        result = lab.utils.mergeProperties({ a: true, values: [10, 20] }, { b: true, values: [15, 35] }, false);
         expect(result).toMatchObject({ a: true, b: true, values: [15, 35] });
     });
 });

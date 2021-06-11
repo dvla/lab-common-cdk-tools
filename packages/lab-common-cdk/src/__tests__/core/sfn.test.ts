@@ -3,7 +3,7 @@ import '@aws-cdk/assert/jest';
 import * as cdk from '@aws-cdk/core';
 import * as sfn from '@aws-cdk/aws-stepfunctions';
 import { LogGroup, RetentionDays } from '@aws-cdk/aws-logs';
-import { lab, labutil } from '../..';
+import * as lab from '../..';
 
 /**
  * Basic Test stack
@@ -12,7 +12,7 @@ class TestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const stateMachine = lab.sfn.StateMachine(this, 'test-machine', {
             definition: new sfn.Pass(this, 'StartS')
@@ -27,7 +27,7 @@ class AdvancedTestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         const stateMachineLogGroup : LogGroup = new LogGroup(this, 'StateMachineLogGroup', {
             logGroupName: 'my/logs',

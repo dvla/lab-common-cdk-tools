@@ -10,9 +10,10 @@ This module provides:
 
 ### Quick Start
 
-1. Import the module, `import { lab, labutil } from 'lab-common-cdk';`
-2. Start with a standard construct, e.g. `new s3.Bucket`
-3. Remove the `new` and add the lab prefix. , e.g. `lab.s3.Bucket`
+1. Install the module `npm install @dvla/lab-common-cdk`
+2. In your CDK stack definition `import * as lab from '@dvla/lab-common-cdk';`
+3. Start with a standard construct, e.g. `new s3.Bucket`
+4. Remove the `new` and add the lab prefix. , e.g. `lab.s3.Bucket`
 
 You should now be able to use the function.
 
@@ -33,6 +34,14 @@ construct, e.g. to enable cors.
 ```
 { enableCors : true }
 ```
+
+#### Available Utilities
+
+| Function | Description |
+| --- | --- |
+| `getStage` | Gets the 'stage' from the stack context or uses default. |
+| `getStageAwareName` | Returns a unique name, taking account of the stage if required. |
+| `tag` | Add default tags to a stack. |
 
 #### Available Constructs
 

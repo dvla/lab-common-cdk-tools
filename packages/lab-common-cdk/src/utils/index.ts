@@ -7,6 +7,11 @@ const DEFAULT_STAGE = 'dev';
 
 /**
  * Gets the 'stage' from the stack context or uses default.
+ * Attempts to find a stage in the following order:
+ *  1) A "stage" variable in the CDK context.
+ *  2) An environment variable called "CDK_STAGE".
+ *  3) Falls back to use a stage called 'dev'.
+ *
  * @param scope - a cdk stack
  * @param stageAware - should the stage be used
  */
@@ -28,7 +33,7 @@ export const getStage = (scope: cdk.IConstruct, stageAware? : StageAware): strin
  * @param id - a unique id
  * @param stageAware - should the stage be used
  */
-export const getStageAwareName = (scope: cdk.IConstruct, id: string, stageAware? : StageAware, ): string => {
+export const getStageAwareName = (scope: cdk.IConstruct, id: string, stageAware? : StageAware): string => {
     const stage = getStage(scope, stageAware);
     return stage ? `${id}-${stage}` : id;
 };

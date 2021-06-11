@@ -1,7 +1,7 @@
 import '@aws-cdk/assert/jest';
 import * as cdk from '@aws-cdk/core';
 import { Role } from '@aws-cdk/aws-iam';
-import { labconst, labutil } from '../..';
+import * as lab from '../..';
 
 /**
  * Basic Test stack
@@ -10,11 +10,11 @@ class TestStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        labutil.tag(this);
+        lab.utils.tag(this);
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const role = new Role(this, 'MyTestRole', {
-            assumedBy: labconst.service.SNS,
+            assumedBy: lab.constants.service.SNS,
         });
     }
 }
@@ -31,7 +31,7 @@ describe('Tests root core functionality', () => {
         const stack = new TestStack(app, 'MyTestStack');
 
         // Then
-        expect(labutil.getStage(app)).toBe('basicstack');
+        expect(lab.utils.getStage(app)).toBe('basicstack');
         expect(stack).toHaveResourceLike('AWS::IAM::Role', {
             AssumeRolePolicyDocument : {
                 Statement: [
