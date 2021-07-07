@@ -1,9 +1,13 @@
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as cdk from '@aws-cdk/core';
-import * as logs from '@aws-cdk/aws-logs';
-import { Logs } from 'cdk-iam-floyd';
+import { Construct, IConstruct } from 'constructs';
+import {
+    Aws,
+    Duration,
+    aws_lambda as lambda,
+    aws_logs as logs,
+    aws_iam as iam,
+    aws_lambda_nodejs as nodejs
+} from 'aws-cdk-lib';
 import * as Path from 'path';
-import * as nodejs from '@aws-cdk/aws-lambda-nodejs';
 import { MergeAware, StageAware } from './defaults';
 import { getStageAwareName, mergeProperties } from '../utils';
 
@@ -11,7 +15,7 @@ export const LAMBDA_DEFAULTS = {
     runtime: lambda.Runtime.NODEJS_12_X,
     handler: 'index.handler',
     memorySize: 128,
-    timeout: cdk.Duration.seconds(60),
+    timeout: Duration.seconds(60),
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
 } as Partial<lambda.FunctionProps>;
@@ -20,7 +24,7 @@ export const LAMBDA_NODEJS_DEFAULTS = {
     runtime: lambda.Runtime.NODEJS_14_X,
     handler: 'handler',
     memorySize: 128,
-    timeout: cdk.Duration.seconds(60),
+    timeout: Duration.seconds(60),
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
     bundling: {
@@ -34,7 +38,7 @@ export const LAMBDA_NODEJS_DEFAULTS = {
  * Get the root path where the lambdas are stored.
  * @param scope
  */
-const getAssetPath = (scope: cdk.IConstruct) => {
+const getAssetPath = (scope: IConstruct) => {
     const path = process.env.CDK_ASSET_PATH || scope.node.tryGetContext('assetPath') as string || '';
     return Path.normalize(path)
 };
@@ -45,13 +49,21 @@ const getAssetPath = (scope: cdk.IConstruct) => {
  * @param path usually the function name
  */
 const addDefaultPermissions = (aLambda: lambda.Function, path: string) => {
-    aLambda.role?.addToPrincipalPolicy(new Logs()
-        .toCreateLogGroup()
-        .toCreateLogStream()
-        .toPutLogEvents()
-        .onLogGroup(
-            `/aws/lambda/${path}:*`, cdk.Aws.ACCOUNT_ID, cdk.Aws.REGION, cdk.Aws.PARTITION,
-        ));
+
+    // TODO I think this is the equivalent of what is floyd constructed below.
+    // I'm tempted to break this out into our own helper functions.
+    const arn = `arn:${Aws.PARTITION}:logs:${Aws.REGION}:${Aws.ACCOUNT_ID}:log-group:/aws/lambda/${path}:*`;
+    const etlPolicy = new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        resources: [arn],
+        actions: [
+            'logs:CreateLogGroup',
+            'logs:CreateLogStream',
+            'logs:PutLogEvents'
+        ],
+    });
+
+    aLambda.role?.addToPrincipalPolicy(etlPolicy);
 };
 
 /**
@@ -73,7 +85,7 @@ export interface FunctionParams extends StageAware, MergeAware {
  * @param params - Optional additional parameters specific to this function.
  * @constructor
  */
-export const Function = (scope: cdk.Construct, id: string, props?: Partial<lambda.FunctionProps>,
+export const Function = (scope: Construct, id: string, props?: Partial<lambda.FunctionProps>,
     params?: Partial<FunctionParams>): lambda.Function => {
 
     const fullFunctionName = getStageAwareName(scope, id, params);
@@ -102,7 +114,7 @@ export const Function = (scope: cdk.Construct, id: string, props?: Partial<lambd
  * @param params - Optional additional parameters specific to this function.
  * @constructor
  */
-export const NodejsFunction = (scope: cdk.Construct, id: string, props?: Partial<nodejs.NodejsFunctionProps>,
+export const NodejsFunction = (scope: Construct, id: string, props?: Partial<nodejs.NodejsFunctionProps>,
     params?: Partial<FunctionParams>): nodejs.NodejsFunction => {
 
     const fullFunctionName = getStageAwareName(scope, id, params);

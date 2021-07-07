@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call */
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as logs from '@aws-cdk/aws-logs';
+import { aws_lambda as lambda, aws_logs as logs } from 'aws-cdk-lib';
 import * as lab from '../..';
 
 describe('Tests Merging strategies', () => {

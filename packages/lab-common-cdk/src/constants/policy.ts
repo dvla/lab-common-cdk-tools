@@ -1,17 +1,25 @@
-import { Textract, Comprehend, Rekognition } from 'cdk-iam-floyd';
-import { PolicyStatement } from '@aws-cdk/aws-iam';
+import { aws_iam as iam } from 'aws-cdk-lib';
 
-export const TEXTRACT_ALLOW : PolicyStatement = new Textract()
-    .allow()
-    .onAllResources()
-    .allActions();
+const etlTexttractPolicy = new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    resources: ['*'],
+    actions: ['textract:*'],
+});
 
-export const COMPREHEND_ALLOW: PolicyStatement = new Comprehend()
-    .allow()
-    .onAllResources()
-    .allActions();
+export const TEXTRACT_ALLOW : iam.PolicyStatement = etlTexttractPolicy;
 
-export const REKOGNITION_ALLOW: PolicyStatement = new Rekognition()
-    .allow()
-    .onAllResources()
-    .allActions();
+const etlComprehendPolicy = new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    resources: ['*'],
+    actions: ['comprehend:*'],
+});
+
+export const COMPREHEND_ALLOW: iam.PolicyStatement = etlComprehendPolicy;
+
+const etlRekognitionPolicy = new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    resources: ['*'],
+    actions: ['rekognition:*'],
+});
+
+export const REKOGNITION_ALLOW: iam.PolicyStatement = etlRekognitionPolicy;

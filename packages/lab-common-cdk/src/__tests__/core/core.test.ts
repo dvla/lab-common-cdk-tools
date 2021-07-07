@@ -1,19 +1,19 @@
 import '@aws-cdk/assert/jest';
-import * as cdk from '@aws-cdk/core';
-import { Role } from '@aws-cdk/aws-iam';
+import { Construct } from 'constructs';
+import { aws_iam as iam, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
 
 /**
  * Basic Test stack
  */
-class TestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class TestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const role = new Role(this, 'MyTestRole', {
+        const role = new iam.Role(this, 'MyTestRole', {
             assumedBy: lab.constants.service.SNS,
         });
     }
@@ -23,7 +23,7 @@ describe('Tests root core functionality', () => {
 
     test('Tests basic stack', () => {
         // Given
-        const app = new cdk.App({
+        const app = new App({
             context: { stage: 'basicstack' },
         });
 
@@ -32,6 +32,7 @@ describe('Tests root core functionality', () => {
 
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
+        
         expect(stack).toHaveResourceLike('AWS::IAM::Role', {
             AssumeRolePolicyDocument : {
                 Statement: [
@@ -50,7 +51,7 @@ describe('Tests root core functionality', () => {
                     Value: 'dvla-emerging-tech'
                 }
             ]
-        }
-        );
+        });
+        
     });
 });

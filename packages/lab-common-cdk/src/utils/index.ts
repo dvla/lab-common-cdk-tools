@@ -1,4 +1,6 @@
-import * as cdk from '@aws-cdk/core';
+import { IConstruct } from 'constructs';
+import { Tags } from 'aws-cdk-lib';
+
 import * as _ from 'lodash';
 import * as constants from '../constants';
 import { StageAware } from '../core/defaults';
@@ -15,7 +17,7 @@ const DEFAULT_STAGE = 'dev';
  * @param scope - a cdk stack
  * @param stageAware - should the stage be used
  */
-export const getStage = (scope: cdk.IConstruct, stageAware? : StageAware): string => {
+export const getStage = (scope: IConstruct, stageAware? : StageAware): string => {
     if (stageAware && stageAware.useStage === false) {
         return '';
     }
@@ -33,7 +35,7 @@ export const getStage = (scope: cdk.IConstruct, stageAware? : StageAware): strin
  * @param id - a unique id
  * @param stageAware - should the stage be used
  */
-export const getStageAwareName = (scope: cdk.IConstruct, id: string, stageAware? : StageAware): string => {
+export const getStageAwareName = (scope: IConstruct, id: string, stageAware? : StageAware): string => {
     const stage = getStage(scope, stageAware);
     return stage ? `${id}-${stage}` : id;
 };
@@ -42,8 +44,8 @@ export const getStageAwareName = (scope: cdk.IConstruct, id: string, stageAware?
  * Add default tags to a stack.
  * @param scope - a stack or construct
  */
-export const tag = (scope: cdk.IConstruct) => {
-    cdk.Tags.of(scope).add(
+export const tag = (scope: IConstruct) => {
+    Tags.of(scope).add(
         constants.PROJECT,
         scope.node.tryGetContext('project') || 'dvla-emerging-tech',
     );

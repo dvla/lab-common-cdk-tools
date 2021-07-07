@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
 import '@aws-cdk/assert/jest';
-import * as cdk from '@aws-cdk/core';
+import { Construct } from 'constructs';
+import { App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
 
 /**
  * Basic Test stack
  */
-class TestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class TestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
@@ -19,8 +20,8 @@ class TestStack extends cdk.Stack {
 /**
  * More Adanced test stack
  */
-class AdvancedTestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class AdvancedTestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
@@ -40,7 +41,7 @@ describe('Tests NodeJs lambda core functionality', () => {
     test('Tests basic lambda stack', () => {
 
         // Given
-        const app = new cdk.App({
+        const app = new App({
             context: { stage: 'basicstack', assetPath: './src/__tests__/fixtures' },
         });
 
@@ -66,7 +67,7 @@ describe('Tests NodeJs lambda core functionality', () => {
     test('Tests advanced lambda stack', () => {
 
         // Given
-        const app = new cdk.App({
+        const app = new App({
             context: { stage: 'betterstack', project: 'nicer' },
         });
 

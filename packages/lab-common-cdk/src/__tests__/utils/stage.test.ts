@@ -1,12 +1,12 @@
 import '@aws-cdk/assert/jest';
-import * as cdk from '@aws-cdk/core';
+import { App, Stack } from 'aws-cdk-lib';
 import * as lab from '../..';
 
 describe('Tests root core functionality', () => {
     test('Tests get default stage', () => {
         // Given
-        const app = new cdk.App();
-        const stack = new cdk.Stack(app, 'MyTestStack');
+        const app = new App();
+        const stack = new Stack(app, 'MyTestStack');
 
         // Then
         expect(lab.utils.getStage(app)).toBe('dev');
@@ -17,8 +17,8 @@ describe('Tests root core functionality', () => {
         // Given
         const testStage = 'testStage';
         process.env.CDK_STAGE = testStage;
-        const app = new cdk.App();
-        const stack = new cdk.Stack(app, 'MyTestStack');
+        const app = new App();
+        const stack = new Stack(app, 'MyTestStack');
 
         // Then
         expect(lab.utils.getStage(app)).toBe(testStage);
@@ -28,10 +28,10 @@ describe('Tests root core functionality', () => {
     test('Tests get default stage with context', () => {
         // Given
         const testStage = 'testStageCtx';
-        const app = new cdk.App({
+        const app = new App({
             context: { stage: testStage },
         });
-        const stack = new cdk.Stack(app, 'MyTestStack');
+        const stack = new Stack(app, 'MyTestStack');
 
         // Then
         expect(lab.utils.getStage(app)).toBe(testStage);
@@ -40,7 +40,7 @@ describe('Tests root core functionality', () => {
 
     test('Tests stage aware', () => {
         // Given
-        const app = new cdk.App();
+        const app = new App();
 
         // Then
         expect(lab.utils.getStage(app, { useStage : false })).toBe('');

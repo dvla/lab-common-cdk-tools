@@ -1,6 +1,10 @@
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import * as cdk from '@aws-cdk/core';
-import * as logs from '@aws-cdk/aws-logs';
+import { Construct } from 'constructs';
+import {
+    Duration,
+    RemovalPolicy,
+    aws_logs as logs,
+    aws_stepfunctions as sfn
+} from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
 import { getStageAwareName, mergeProperties } from '../utils';
 
@@ -9,7 +13,7 @@ export const STATE_MACHINE_DEFAULTS = {
         level: sfn.LogLevel.ERROR,
     },
     stateMachineType: sfn.StateMachineType.STANDARD,
-    timeout: cdk.Duration.minutes(5),
+    timeout: Duration.minutes(5),
 } as Partial<sfn.StateMachineProps>;
 
 /**
@@ -27,7 +31,7 @@ export interface StateMachineParams extends StageAware, MergeAware {
  * @param params - Optional additional parameters specific to this StateMachine.
  * @constructor
  */
-export const StateMachine = (scope: cdk.Construct, id: string, props?:  Partial<sfn.StateMachineProps>,
+export const StateMachine = (scope: Construct, id: string, props?:  Partial<sfn.StateMachineProps>,
     params?:Partial<StateMachineParams>): sfn.StateMachine => {
 
     const stateMachineName = getStageAwareName(scope, id, params);
@@ -39,7 +43,7 @@ export const StateMachine = (scope: cdk.Construct, id: string, props?:  Partial<
     if (!props?.logs?.destination) {
         machineProps.logs = mergeProperties(STATE_MACHINE_DEFAULTS.logs, {
             destination : new logs.LogGroup(scope, `${stateMachineName}LogGroup`, {
-                removalPolicy: cdk.RemovalPolicy.DESTROY,
+                removalPolicy: RemovalPolicy.DESTROY,
                 retention: logs.RetentionDays.ONE_WEEK,
             })
         })

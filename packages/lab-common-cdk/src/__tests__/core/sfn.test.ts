@@ -1,15 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
 import '@aws-cdk/assert/jest';
-import * as cdk from '@aws-cdk/core';
-import * as sfn from '@aws-cdk/aws-stepfunctions';
-import { LogGroup, RetentionDays } from '@aws-cdk/aws-logs';
+import { Construct } from 'constructs';
+import {
+    aws_stepfunctions as sfn,
+    aws_logs as logs,
+    App,
+    Stack,
+    StackProps,
+    Duration,
+    RemovalPolicy
+} from 'aws-cdk-lib';
 import * as lab from '../..';
 
 /**
  * Basic Test stack
  */
-class TestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class TestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
@@ -23,16 +30,16 @@ class TestStack extends cdk.Stack {
 /**
  * More Advanced test stack
  */
-class AdvancedTestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class AdvancedTestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
 
-        const stateMachineLogGroup : LogGroup = new LogGroup(this, 'StateMachineLogGroup', {
+        const stateMachineLogGroup : logs.LogGroup = new logs.LogGroup(this, 'StateMachineLogGroup', {
             logGroupName: 'my/logs',
-            removalPolicy: cdk.RemovalPolicy.RETAIN,
-            retention: RetentionDays.ONE_MONTH,
+            removalPolicy: RemovalPolicy.RETAIN,
+            retention: logs.RetentionDays.ONE_MONTH,
         });
 
         const stateMachine = lab.sfn.StateMachine(this, 'test-machine', {
@@ -41,7 +48,7 @@ class AdvancedTestStack extends cdk.Stack {
             logs: {
                 destination: stateMachineLogGroup
             },
-            timeout: cdk.Duration.hours(1),
+            timeout: Duration.hours(1),
         }, {
             useStage: false
         });
@@ -52,7 +59,7 @@ describe('Tests State Machine core functionality', () => {
 
     test('Tests default State Machine stack', () => {
         // Given
-        const app = new cdk.App({
+        const app = new App({
             context: { project: 'steps', stage: 'testing' },
         });
 
@@ -80,7 +87,7 @@ describe('Tests State Machine core functionality', () => {
 
     test('Tests Advanced State Machine stack', () => {
         // Given
-        const app = new cdk.App({
+        const app = new App({
             context: { project: 'steps', stage: 'testing' },
         });
 

@@ -1,12 +1,12 @@
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cdk from '@aws-cdk/core';
+import { Construct } from 'constructs';
+import { aws_s3 as s3, Duration, RemovalPolicy } from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
 import { getStage, mergeProperties } from '../utils';
 
 export const BUCKET_DEFAULTS = {
     encryption: s3.BucketEncryption.S3_MANAGED,
     blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-    removalPolicy: cdk.RemovalPolicy.DESTROY,
+    removalPolicy: RemovalPolicy.DESTROY,
 } as Partial<s3.BucketProps>;
 
 /**
@@ -36,7 +36,7 @@ export interface BucketParams extends StageAware, MergeAware {
  * @param params - Optional additional parameters specific to this function.
  * @constructor
  */
-export const Bucket = (scope: cdk.Construct, id: string, props?:  Partial<s3.BucketProps>,
+export const Bucket = (scope: Construct, id: string, props?:  Partial<s3.BucketProps>,
     params?:Partial<BucketParams>): s3.Bucket => {
 
     const stage = getStage(scope, params);
@@ -59,7 +59,7 @@ export const Bucket = (scope: cdk.Construct, id: string, props?:  Partial<s3.Buc
 
     if (expireContent) {
         bucketProps.lifecycleRules = [{
-            expiration: cdk.Duration.days(14),
+            expiration: Duration.days(14),
         }]
     }
     const defaultProps = mergeProperties(BUCKET_DEFAULTS, bucketProps);

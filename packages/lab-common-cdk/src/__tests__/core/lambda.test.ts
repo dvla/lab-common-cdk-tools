@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
 import '@aws-cdk/assert/jest';
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
-import * as logs from '@aws-cdk/aws-logs';
+import { Construct } from 'constructs';
+import { aws_lambda as lambda, aws_logs as logs, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
 
 /**
  * Basic Test stack
  */
-class TestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class TestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
@@ -21,8 +20,8 @@ class TestStack extends cdk.Stack {
 /**
  * More Adanced test stack
  */
-class AdvancedTestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class AdvancedTestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
@@ -40,8 +39,8 @@ class AdvancedTestStack extends cdk.Stack {
 /**
  * Customised Test stack
  */
-class CustomTestStack extends cdk.Stack {
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class CustomTestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
         lab.utils.tag(this);
@@ -53,7 +52,7 @@ class CustomTestStack extends cdk.Stack {
 describe('Tests lambda core functionality', () => {
 
     // Given
-    const app = new cdk.App({
+    const app = new App({
         context: { stage: 'basicstack', assetPath: './src/__tests__/fixtures' },
     });
 
@@ -82,7 +81,7 @@ describe('Tests lambda core functionality', () => {
     test('Tests asset path lambda stack', () => {
 
         // Given
-        const anotherApp = new cdk.App({
+        const anotherApp = new App({
             context: { stage: 'mystack' },
         });
 
