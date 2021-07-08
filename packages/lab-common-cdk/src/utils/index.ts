@@ -1,11 +1,13 @@
 import { IConstruct } from 'constructs';
-import { Tags } from 'aws-cdk-lib';
+import { Tags, Duration } from 'aws-cdk-lib';
+import moment from 'moment';
 
 import * as _ from 'lodash';
 import * as constants from '../constants';
 import { StageAware } from '../core/defaults';
 
 const DEFAULT_STAGE = 'dev';
+export const EXPIRES_FORMAT = 'YYYYMMDDHHmm';
 
 /**
  * Gets the 'stage' from the stack context or uses default.
@@ -41,13 +43,39 @@ export const getStageAwareName = (scope: IConstruct, id: string, stageAware? : S
 };
 
 /**
- * Add default tags to a stack.
- * @param scope - a stack or construct
+ * Additional properties to be used when tagging.
  */
-export const tag = (scope: IConstruct) => {
-    Tags.of(scope).add(
+export interface TagProps {
+    /**
+     * Duration from now until the stack should be considered expired.
+     * @Default Duration.days(100)
+     */
+    readonly expires : Duration;
+};
+
+/**
+ * Add default tags to a stack.
+ * Calculates the expiration date either using 100 days from today or the expiration duration passed in.
+ * @param scope - a stack or construct
+ * @param properties - additional properties to be tagged
+ */
+export const tag = (scope: IConstruct, properties?: TagProps) => {
+    const tags = Tags.of(scope);
+
+    const expires = properties?.expires ?? Duration.days(100);
+
+    let now = moment().minute(0);
+    const addedHours = expires.toHours();
+    now = now.add(addedHours, 'hours');
+    const expiresDate = now.format(EXPIRES_FORMAT);
+
+    tags.add(
         constants.PROJECT,
         scope.node.tryGetContext('project') || 'dvla-emerging-tech',
+    );
+    tags.add(
+        constants.EXPIRES,
+        expiresDate,
     );
 };
 
