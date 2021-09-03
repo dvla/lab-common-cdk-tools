@@ -64,7 +64,7 @@ describe('Tests lambda core functionality', () => {
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
         expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
-            FunctionName: 'test-func-basicstack',
+            FunctionName: 'basicstack-test-func',
             Handler: 'index.handler',
             MemorySize: 128,
             Runtime: 'nodejs12.x',
@@ -90,7 +90,7 @@ describe('Tests lambda core functionality', () => {
 
         // Then
         expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
-            FunctionName: 'src-mystack',
+            FunctionName: 'mystack-src',
         });
     });
 

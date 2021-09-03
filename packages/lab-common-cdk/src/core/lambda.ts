@@ -15,8 +15,9 @@ export const LAMBDA_DEFAULTS = {
     runtime: lambda.Runtime.NODEJS_12_X,
     handler: 'index.handler',
     memorySize: 128,
-    timeout: Duration.seconds(60),
+    timeout: Duration.seconds(30),
     tracing: lambda.Tracing.ACTIVE,
+    reservedConcurrentExecutions: 25,
     logRetention: logs.RetentionDays.ONE_WEEK,
 } as Partial<lambda.FunctionProps>;
 
@@ -24,9 +25,10 @@ export const LAMBDA_NODEJS_DEFAULTS = {
     runtime: lambda.Runtime.NODEJS_14_X,
     handler: 'handler',
     memorySize: 128,
-    timeout: Duration.seconds(60),
+    timeout: Duration.seconds(30),
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
+    reservedConcurrentExecutions: 25,
     bundling: {
         externalModules: [
             'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
@@ -50,8 +52,6 @@ const getAssetPath = (scope: IConstruct) => {
  */
 const addDefaultPermissions = (aLambda: lambda.Function, path: string) => {
 
-    // TODO I think this is the equivalent of what is floyd constructed below.
-    // I'm tempted to break this out into our own helper functions.
     const arn = `arn:${Aws.PARTITION}:logs:${Aws.REGION}:${Aws.ACCOUNT_ID}:log-group:/aws/lambda/${path}:*`;
     const etlPolicy = new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
@@ -63,7 +63,7 @@ const addDefaultPermissions = (aLambda: lambda.Function, path: string) => {
         ],
     });
 
-    aLambda.role?.addToPrincipalPolicy(etlPolicy);
+    aLambda.addToRolePolicy(etlPolicy);
 };
 
 /**

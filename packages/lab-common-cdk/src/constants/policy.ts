@@ -23,3 +23,11 @@ const etlRekognitionPolicy = new iam.PolicyStatement({
 });
 
 export const REKOGNITION_ALLOW: iam.PolicyStatement = etlRekognitionPolicy;
+
+const etlSecretsmanagerPolicy = new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    resources: ['*'],
+    actions: ['secretsmanager:GetSecretValue', 'secretsmanager:ListSecrets'],
+});
+
+export const SECRETSMANAGER_READ: iam.PolicyStatement = etlSecretsmanagerPolicy;

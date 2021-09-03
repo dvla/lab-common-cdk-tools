@@ -23,3 +23,14 @@ Object {
   "Resource": "*",
 }
 `;
+
+exports[`Tests Policy statements Tests services 4`] = `
+Object {
+  "Action": Array [
+    "secretsmanager:GetSecretValue",
+    "secretsmanager:ListSecrets",
+  ],
+  "Effect": "Allow",
+  "Resource": "*",
+}
+`;

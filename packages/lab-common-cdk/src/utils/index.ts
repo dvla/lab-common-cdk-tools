@@ -39,7 +39,7 @@ export const getStage = (scope: IConstruct, stageAware? : StageAware): string =>
  */
 export const getStageAwareName = (scope: IConstruct, id: string, stageAware? : StageAware): string => {
     const stage = getStage(scope, stageAware);
-    return stage ? `${id}-${stage}` : id;
+    return stage ? `${stage}-${id}` : id;
 };
 
 /**
@@ -94,7 +94,7 @@ const arrayConcat : any = (source1: any, source2: any) => {
 };
 
 /**
- * Recursively merge the properties from the 3 sources.  The latter sources will overwrite the former.
+ * Recursively merge the properties from the 2 sources.  The latter sources will overwrite the former.
  * Array and plain object properties are merged recursively. Other objects and value types are overridden by assignment.
  * @param source1
  * @param source2

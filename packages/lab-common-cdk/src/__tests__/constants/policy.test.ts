@@ -5,5 +5,6 @@ describe('Tests Policy statements', () => {
         expect(lab.constants.policy.COMPREHEND_ALLOW.toStatementJson()).toMatchSnapshot();
         expect(lab.constants.policy.REKOGNITION_ALLOW.toStatementJson()).toMatchSnapshot();
         expect(lab.constants.policy.TEXTRACT_ALLOW.toStatementJson()).toMatchSnapshot();
+        expect(lab.constants.policy.SECRETSMANAGER_READ.toStatementJson()).toMatchSnapshot();
     });
 });

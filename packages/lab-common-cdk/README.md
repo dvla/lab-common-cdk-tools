@@ -51,5 +51,6 @@ construct, e.g. to enable cors.
 | `lab.lambda.Function(scope, id, props, params)`| `lambda.Function` |
 | `lab.lambda.NodejsFunction(scope, id, props, params)`| `nodejs.NodejsFunction` |
 | `lab.sfn.StateMachine(scope, id, props, params)`| `sfn.StateMachine` |
-| `lab.apigateway.RestApi(scope, id, props, params)`| `sfn.RestApi` |
-
+| `lab.apigateway.RestApi(scope, id, props, params)`| `apigateway.RestApi` |
+| `lab.sqs.Queue(scope, id, props, params)`| `sqs.Queue` |
+| `lab.sqs.FifoQueue(scope, id, props, params)`| `sqs.Queue` |

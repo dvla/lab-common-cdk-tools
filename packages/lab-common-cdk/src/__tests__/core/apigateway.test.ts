@@ -2,8 +2,6 @@
 import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import {
-    aws_stepfunctions as sfn,
-    aws_logs as logs,
     App,
     Stack,
     StackProps
@@ -24,7 +22,7 @@ class TestStack extends Stack {
         // Add a /test resource
         const test = restapi.root.addResource('test');
 
-        test.addMethod("GET");
+        test.addMethod('GET');
     }
 }
 
@@ -40,6 +38,8 @@ describe('Tests API Gateway RestAPI core functionality', () => {
         const stack = new TestStack(app, 'MyTestStack');
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::ApiGateway::RestApi');
+        expect(stack).toHaveResourceLike('AWS::ApiGateway::RestApi', {
+            Name: 'testing-test-restapi',
+        });
     });
 });
