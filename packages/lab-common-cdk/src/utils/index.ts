@@ -56,6 +56,7 @@ export interface TagProps {
 /**
  * Add default tags to a stack.
  * Calculates the expiration date either using 100 days from today or the expiration duration passed in.
+ * It defaults to the first Monday of the week.
  * @param scope - a stack or construct
  * @param properties - additional properties to be tagged
  */
@@ -65,8 +66,7 @@ export const tag = (scope: IConstruct, properties?: TagProps) => {
     const expires = properties?.expires ?? Duration.days(100);
 
     let now = moment().minute(0);
-    const addedHours = expires.toHours();
-    now = now.add(addedHours, 'hours');
+    now = now.add(expires.toHours(), 'hours').day(1);
     const expiresDate = now.format(EXPIRES_FORMAT);
 
     tags.add(

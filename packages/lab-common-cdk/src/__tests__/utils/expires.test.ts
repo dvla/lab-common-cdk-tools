@@ -46,7 +46,7 @@ describe('Tests expires tag is assigned', () => {
 
         let now = moment().minute(0);
         const addedHours = expires.toHours();
-        now = now.add(addedHours, 'hours');
+        now = now.add(addedHours, 'hours').day(1);
         const expiresDate = now.format(lab.utils.EXPIRES_FORMAT);
 
         // Then
@@ -80,7 +80,7 @@ describe('Tests expires tag is assigned', () => {
 
         let now = moment().minute(0);
         const addedHours = expires.toHours();
-        now = now.add(addedHours, 'hours');
+        now = now.add(addedHours, 'hours').day(1);
         const expiresDate = now.format(lab.utils.EXPIRES_FORMAT);
 
         // Then

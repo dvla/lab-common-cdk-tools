@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "DVLA Emerging Tech Lab CDK Tools",
   "scripts": {
-    "audit": "lerna exec -- npm audit --audit-level=moderate",
+    "audit": "lerna exec -- npm audit --audit-level=moderate --production",
     "build": "lerna run tsc",
     "outdated": "lerna exec -- npm outdated",
     "lint": "lerna run lint",
