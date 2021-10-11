@@ -1,6 +1,6 @@
 {
   "name": "@dvla/lab-common-cdk",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "DVLA Emerging Tech Lab common cdk utilities",
   "scripts": {
     "tsc": "tsc",
