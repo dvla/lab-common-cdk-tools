@@ -17,7 +17,7 @@ export const LAMBDA_DEFAULTS = {
     memorySize: 128,
     timeout: Duration.seconds(30),
     tracing: lambda.Tracing.ACTIVE,
-    reservedConcurrentExecutions: 25,
+    reservedConcurrentExecutions: 5,
     logRetention: logs.RetentionDays.ONE_WEEK,
 } as Partial<lambda.FunctionProps>;
 
@@ -28,7 +28,7 @@ export const LAMBDA_NODEJS_DEFAULTS = {
     timeout: Duration.seconds(30),
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
-    reservedConcurrentExecutions: 25,
+    reservedConcurrentExecutions: 5,
     bundling: {
         externalModules: [
             'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
