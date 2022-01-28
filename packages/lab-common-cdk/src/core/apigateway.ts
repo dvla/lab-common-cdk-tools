@@ -7,6 +7,8 @@ export const RESTAPI_DEFAULTS = {
     deployOptions: {
         tracingEnabled: true,
         metricsEnabled: true,
+        loggingLevel: apigateway.MethodLoggingLevel.INFO,
+        dataTraceEnabled: true,
     }
 } as Partial<apigateway.RestApi>;
 

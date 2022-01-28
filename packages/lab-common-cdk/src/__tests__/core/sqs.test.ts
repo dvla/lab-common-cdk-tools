@@ -5,11 +5,11 @@ import {
     App,
     Stack,
     StackProps,
+    aws_lambda as lambda,
     Duration, aws_sqs as sqs
 } from 'aws-cdk-lib';
-import { SynthUtils } from '@aws-cdk/assert';
-import * as lambda from 'aws-cdk-lib/lib/aws-lambda';
 import * as lab from '../..';
+import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -71,7 +71,7 @@ describe('Tests Queue core functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestSQSStack');
 
         // Then
         expect(stack).toCountResources('AWS::SQS::Queue', 2);
@@ -101,6 +101,8 @@ describe('Tests Queue core functionality', () => {
                 }
             ]
         });
+
+        copyStackTemplate(app, stack);
     });
 
     test('Tests Fifo Queue stack', () => {
@@ -141,6 +143,8 @@ describe('Tests Queue core functionality', () => {
                 }
             ]
         });
+
+        copyStackTemplate(app, stack);
     });
 
     test('Tests Lambda worker Queue stack', () => {
@@ -170,5 +174,7 @@ describe('Tests Queue core functionality', () => {
             EventSourceArn: stack.resolve(stack.queue.queueArn),
             BatchSize: 5
         });
+
+        copyStackTemplate(app, stack);
     });
 });

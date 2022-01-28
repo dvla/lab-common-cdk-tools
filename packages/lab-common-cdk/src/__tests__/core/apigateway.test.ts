@@ -66,7 +66,7 @@ describe('Tests API Gateway RestAPI core functionality', () => {
 
         expect(stack).toHaveResourceLike('AWS::ApiGateway::Method', {
             HttpMethod: 'GET',
-            AuthorizationType: "NONE"
+            AuthorizationType: 'NONE'
         });
 
         expect(stack).toHaveResourceLike('AWS::ApiGateway::Stage', {
@@ -74,7 +74,9 @@ describe('Tests API Gateway RestAPI core functionality', () => {
             TracingEnabled: true,
             MethodSettings: [
                 {
+                    DataTraceEnabled : true,
                     HttpMethod: '*',
+                    LoggingLevel: 'INFO',
                     MetricsEnabled: true,
                     ResourcePath: '/*'
                 }

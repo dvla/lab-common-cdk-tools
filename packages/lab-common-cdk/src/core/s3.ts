@@ -1,7 +1,7 @@
 import { Construct } from 'constructs';
 import { aws_s3 as s3, Duration, RemovalPolicy } from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
-import { getStage, mergeProperties } from '../utils';
+import { getStage, mergeProperties, nagSuppress } from '../utils';
 
 export const BUCKET_DEFAULTS = {
     encryption: s3.BucketEncryption.S3_MANAGED,
@@ -64,5 +64,8 @@ export const Bucket = (scope: Construct, id: string, props?:  Partial<s3.BucketP
     }
     const defaultProps = mergeProperties(BUCKET_DEFAULTS, bucketProps);
     const createdBucket = new s3.Bucket(scope, id, mergeProperties(defaultProps, props));
+    nagSuppress(createdBucket, [
+        { id: 'W35', reason: 'We are not concerned about access logging for this bucket' },
+    ]);
     return createdBucket;
 };

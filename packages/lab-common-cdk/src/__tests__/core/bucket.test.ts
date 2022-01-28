@@ -4,6 +4,7 @@ import { Construct } from 'constructs';
 import { aws_s3 as s3, App, Stack, StackProps, Duration } from 'aws-cdk-lib';
 
 import * as lab from '../..';
+import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -57,7 +58,7 @@ describe('Tests bucket core functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestBucketStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
@@ -82,6 +83,8 @@ describe('Tests bucket core functionality', () => {
             ]
         }
         );
+
+        copyStackTemplate(app, stack);
     });
 
     test('Tests advanced bucket stack', () => {
@@ -91,7 +94,7 @@ describe('Tests bucket core functionality', () => {
         });
 
         // When
-        const stack = new AdvancedTestStack(app, 'MyAdvancedStack');
+        const stack = new AdvancedTestStack(app, 'MyAdvancedBucketStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
@@ -115,6 +118,7 @@ describe('Tests bucket core functionality', () => {
             ]
         }
         );
+        copyStackTemplate(app, stack);
     });
 
     test('Tests custom bucket stack', () => {
@@ -122,7 +126,7 @@ describe('Tests bucket core functionality', () => {
         const app = new App();
 
         // When
-        const stack = new CustomTestStack(app, 'MyCustomStack');
+        const stack = new CustomTestStack(app, 'MyCustomBucketStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
@@ -147,5 +151,6 @@ describe('Tests bucket core functionality', () => {
             ]
         }
         );
+        copyStackTemplate(app, stack);
     });
 });

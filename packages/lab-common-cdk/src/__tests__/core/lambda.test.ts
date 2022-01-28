@@ -3,7 +3,7 @@ import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import { aws_lambda as lambda, aws_logs as logs, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
-
+import { copyStackTemplate } from '../helper';
 /**
  * Basic Test stack
  */
@@ -59,7 +59,7 @@ describe('Tests lambda core functionality', () => {
     test('Tests basic lambda stack', () => {
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestLambdaStack');
 
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
@@ -76,6 +76,8 @@ describe('Tests lambda core functionality', () => {
             ]
         }
         );
+
+        copyStackTemplate(app, stack);
     });
 
     test('Tests asset path lambda stack', () => {
@@ -97,7 +99,7 @@ describe('Tests lambda core functionality', () => {
     test('Tests advanced lambda stack', () => {
 
         // When
-        const stack = new AdvancedTestStack(app, 'MyAdvancedTestStack');
+        const stack = new AdvancedTestStack(app, 'MyAdvancedTestLambdaStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
@@ -110,5 +112,7 @@ describe('Tests lambda core functionality', () => {
         expect(stack).toHaveResourceLike('Custom::LogRetention', {
             RetentionInDays: 365
         });
+
+        copyStackTemplate(app, stack);
     });
 });

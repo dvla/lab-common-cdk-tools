@@ -11,6 +11,7 @@ module.exports = {
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:jest/recommended',
         'prettier'
@@ -26,8 +27,8 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 'warn',
         '@typescript-eslint/no-unsafe-call': 'warn',
         '@typescript-eslint/no-unsafe-assignment': 'warn',
+        '@typescript-eslint/no-unsafe-argument': 'warn',
         '@typescript-eslint/no-unsafe-member-access': 'warn',
-        'import/no-extraneous-dependencies': ['error'],
         'import/no-self-import': 'error',
         'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
         'import/prefer-default-export': 'off',

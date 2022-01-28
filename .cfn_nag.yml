@@ -1,0 +1,3 @@
+RulesToSuppress:
+  - id: W84
+    reason: CloudWatch LogGroup log data not required to be encrypted using KMS

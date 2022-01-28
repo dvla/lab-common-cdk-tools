@@ -5,6 +5,6 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   collectCoverage: true,
-  coveragePathIgnorePatterns: ['(test/.*.mock).(jsx?|tsx?)$'],
+  coveragePathIgnorePatterns: ['(test/.*.mock).(jsx?|tsx?)$', '<rootDir>/node_modules/'],
   coverageDirectory: '<rootDir>/coverage/',
 };

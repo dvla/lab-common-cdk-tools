@@ -3,6 +3,7 @@ import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import { App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
+import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -28,7 +29,7 @@ class AdvancedTestStack extends Stack {
 
         const lamb = lab.lambda.NodejsFunction(this, 'test-func', {
             functionName: 'nice-func',
-            entry: './src/utils/index.ts',
+            entry: './src/__tests__/fixtures/test-func/basic.ts',
             handler: 'my.handle',
             memorySize: 256,
         }, { useStage : false });
@@ -46,7 +47,7 @@ describe('Tests NodeJs lambda core functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestNodeJSStack');
 
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
@@ -72,7 +73,7 @@ describe('Tests NodeJs lambda core functionality', () => {
         });
 
         // When
-        const stack = new AdvancedTestStack(app, 'MyAdvancedTestStack');
+        const stack = new AdvancedTestStack(app, 'MyAdvancedTestNodeJSStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
@@ -80,6 +81,10 @@ describe('Tests NodeJs lambda core functionality', () => {
             Handler: 'index.my.handle',
             MemorySize: 256,
             Runtime: 'nodejs14.x',
+            Timeout: 30,
+            Architectures: [
+                'arm64'
+            ],
             Tags: [
                 {
                     Key: 'lab_project',
@@ -91,5 +96,7 @@ describe('Tests NodeJs lambda core functionality', () => {
         expect(stack).toHaveResourceLike('Custom::LogRetention', {
             RetentionInDays: 7
         });
+
+        copyStackTemplate(app, stack);
     });
 });

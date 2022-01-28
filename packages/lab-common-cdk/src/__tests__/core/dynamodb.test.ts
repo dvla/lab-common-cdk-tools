@@ -6,6 +6,7 @@ import {
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lab from '../..';
+import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -44,7 +45,7 @@ describe('Tests Basic dynamo table creation functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestDynamoStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::DynamoDB::Table', {
@@ -53,6 +54,8 @@ describe('Tests Basic dynamo table creation functionality', () => {
                 PointInTimeRecoveryEnabled : true
             }
         });
+
+        copyStackTemplate(app, stack);
     });
 
     test('Tests Advanced stack', () => {
@@ -62,7 +65,7 @@ describe('Tests Basic dynamo table creation functionality', () => {
         });
 
         // When
-        const stack = new AdvancedStack(app, 'MyTestStack');
+        const stack = new AdvancedStack(app, 'MyTestAdvancedDynamoStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::DynamoDB::Table', {
@@ -71,5 +74,7 @@ describe('Tests Basic dynamo table creation functionality', () => {
                 'WriteCapacityUnits': 5
             }
         });
+
+        copyStackTemplate(app, stack);
     });
 });

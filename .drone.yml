@@ -9,21 +9,13 @@ platform:
 steps:
   - name: install
     pull: if-not-exists
-    image: &base--image node:lts
+    image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.20
     commands:
       - npm config set unsafe-perm true
       - npm ci
       - npm run bootstrap-ci
-
-#  - name: outdated
-#    pull: if-not-exists
-#    image: *base--image
-#    failure: ignore
-#    commands:
-#      - npm run outdated
-#    depends_on:
-#      - install
-#    environment: *env-npm-nexus
+    environment:
+      NPM_CONFIG_REGISTRY: https://nexus.tooling.dvla.gov.uk/repository/npm-group/
 
   - name: audit
     pull: if-not-exists
@@ -50,6 +42,15 @@ steps:
     depends_on:
       - build
 
+  - name: outdated
+    pull: if-not-exists
+    image: *base--image
+    failure: ignore
+    commands:
+     - npm run outdated
+    depends_on:
+     - install
+
   - name: test
     pull: if-not-exists
     image: *base--image
@@ -57,6 +58,15 @@ steps:
       - npm run test
     depends_on:
       - build
+
+  - name: Cloudformation Analysis
+    pull: if-not-exists
+    image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-verify-cloudformation
+    failure: ignore
+    depends_on:
+      - test
+    settings:
+      template_dir: ./packages/lab-common-cdk/coverage/templates
 
   - name: publish
     image: *base--image

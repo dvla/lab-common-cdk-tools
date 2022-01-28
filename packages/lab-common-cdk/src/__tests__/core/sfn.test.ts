@@ -11,6 +11,7 @@ import {
     RemovalPolicy
 } from 'aws-cdk-lib';
 import * as lab from '../..';
+import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -64,7 +65,7 @@ describe('Tests State Machine core functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestSfnStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::StepFunctions::StateMachine', {
@@ -83,6 +84,8 @@ describe('Tests State Machine core functionality', () => {
         expect(stack).toHaveResourceLike('AWS::Logs::LogGroup', {
             RetentionInDays: 7
         });
+
+        copyStackTemplate(app, stack);
     });
 
     test('Tests Advanced State Machine stack', () => {
@@ -92,7 +95,7 @@ describe('Tests State Machine core functionality', () => {
         });
 
         // When
-        const stack = new AdvancedTestStack(app, 'MyTestStack');
+        const stack = new AdvancedTestStack(app, 'MyTestAdvancedSfnStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::StepFunctions::StateMachine', {
@@ -107,5 +110,7 @@ describe('Tests State Machine core functionality', () => {
             RetentionInDays: 30,
             LogGroupName: 'my/logs',
         });
+
+        copyStackTemplate(app, stack);
     });
 });

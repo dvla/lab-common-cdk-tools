@@ -9,7 +9,7 @@ import {
 } from 'aws-cdk-lib';
 import * as Path from 'path';
 import { MergeAware, StageAware } from './defaults';
-import { getStageAwareName, mergeProperties } from '../utils';
+import { getStageAwareName, mergeProperties, nagSuppress } from '../utils';
 
 export const LAMBDA_DEFAULTS = {
     runtime: lambda.Runtime.NODEJS_12_X,
@@ -17,19 +17,24 @@ export const LAMBDA_DEFAULTS = {
     memorySize: 128,
     timeout: Duration.seconds(30),
     tracing: lambda.Tracing.ACTIVE,
-    reservedConcurrentExecutions: 5,
+    reservedConcurrentExecutions: 3, // throttle lambda to 3 concurrent invocations
     logRetention: logs.RetentionDays.ONE_WEEK,
 } as Partial<lambda.FunctionProps>;
 
 export const LAMBDA_NODEJS_DEFAULTS = {
+    architecture: lambda.Architecture.ARM_64,
+    environment: {
+        NODE_OPTIONS: '--enable-source-maps',
+    },
     runtime: lambda.Runtime.NODEJS_14_X,
     handler: 'handler',
     memorySize: 128,
     timeout: Duration.seconds(30),
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
-    reservedConcurrentExecutions: 5,
     bundling: {
+        minify: true,
+        sourceMap: true,
         externalModules: [
             'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
         ],
@@ -46,11 +51,11 @@ const getAssetPath = (scope: IConstruct) => {
 };
 
 /**
- * Add permissions to the Lambda for: Logging
+ * Add permissions to the Lambda for: Logging and suppress cfn_nag messages.
  * @param aLambda any Lambda
  * @param path usually the function name
  */
-const addDefaultPermissions = (aLambda: lambda.Function, path: string) => {
+const addDefaults = (aLambda: lambda.Function, path: string) => {
 
     const arn = `arn:${Aws.PARTITION}:logs:${Aws.REGION}:${Aws.ACCOUNT_ID}:log-group:/aws/lambda/${path}:*`;
     const etlPolicy = new iam.PolicyStatement({
@@ -64,6 +69,10 @@ const addDefaultPermissions = (aLambda: lambda.Function, path: string) => {
     });
 
     aLambda.addToRolePolicy(etlPolicy);
+
+    nagSuppress(aLambda, [
+        { id: 'W89', reason: 'Lambda doesnt always need to be deployed inside a VPC' },
+    ]);
 };
 
 /**
@@ -98,7 +107,7 @@ export const Function = (scope: Construct, id: string, props?: Partial<lambda.Fu
 
     // Create a Node Lambda with conventions
     const createdLambda = new lambda.Function(scope, fullFunctionName, mergeProperties(defaultProps, props));
-    addDefaultPermissions(createdLambda, fullFunctionName);
+    addDefaults(createdLambda, fullFunctionName);
     return createdLambda;
 };
 
@@ -129,6 +138,6 @@ export const NodejsFunction = (scope: Construct, id: string, props?: Partial<nod
 
     // Create a Node JS Lambda with conventions
     const createdLambda = new nodejs.NodejsFunction(scope, fullFunctionName, mergeProperties(defaultProps, props));
-    addDefaultPermissions(createdLambda, fullFunctionName);
+    addDefaults(createdLambda, fullFunctionName);
     return createdLambda;
 };

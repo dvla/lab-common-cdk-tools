@@ -1,5 +1,5 @@
 import { IConstruct } from 'constructs';
-import { Tags, Duration } from 'aws-cdk-lib';
+import { Tags, Duration, CfnResource } from 'aws-cdk-lib';
 import moment from 'moment';
 
 import * as _ from 'lodash';
@@ -77,6 +77,17 @@ export const tag = (scope: IConstruct, properties?: TagProps) => {
         constants.EXPIRES,
         expiresDate,
     );
+};
+
+/**
+ * Add metadata to the Construct node to suppress cfn_nag messages.
+ * @param scope - a resource
+ * @param rules - and array of suppression messages.
+ */
+export const nagSuppress = (scope: IConstruct, rules: any) => {
+    (scope.node.defaultChild as CfnResource).addMetadata('cfn_nag', {
+        rules_to_suppress: rules
+    });
 };
 
 /**

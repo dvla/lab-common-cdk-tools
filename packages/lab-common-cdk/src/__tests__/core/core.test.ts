@@ -2,6 +2,7 @@ import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import { aws_iam as iam, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
+import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -28,11 +29,11 @@ describe('Tests root core functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyTestCoreStack');
 
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
-        
+
         expect(stack).toHaveResourceLike('AWS::IAM::Role', {
             AssumeRolePolicyDocument : {
                 Statement: [
@@ -52,6 +53,7 @@ describe('Tests root core functionality', () => {
                 }
             ]
         });
-        
+
+        copyStackTemplate(app, stack);
     });
 });
