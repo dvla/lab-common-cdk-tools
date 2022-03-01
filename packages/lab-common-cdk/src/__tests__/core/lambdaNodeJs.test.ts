@@ -3,7 +3,6 @@ import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import { App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -97,6 +96,6 @@ describe('Tests NodeJs lambda core functionality', () => {
             RetentionInDays: 7
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

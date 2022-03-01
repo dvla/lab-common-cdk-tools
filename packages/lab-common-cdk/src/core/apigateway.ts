@@ -10,7 +10,7 @@ export const RESTAPI_DEFAULTS = {
         loggingLevel: apigateway.MethodLoggingLevel.INFO,
         dataTraceEnabled: true,
     }
-} as Partial<apigateway.RestApi>;
+} as Partial<apigateway.RestApiProps>;
 
 /**
  * Additional parameters used by the RestApi creation function.

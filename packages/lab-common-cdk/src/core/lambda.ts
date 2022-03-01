@@ -37,6 +37,7 @@ export const LAMBDA_NODEJS_DEFAULTS = {
         sourceMap: true,
         externalModules: [
             'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
+            '@aws-sdk'
         ],
     }
 } as Partial<nodejs.NodejsFunctionProps>;

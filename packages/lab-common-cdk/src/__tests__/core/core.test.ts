@@ -2,7 +2,6 @@ import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import { aws_iam as iam, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -54,6 +53,6 @@ describe('Tests root core functionality', () => {
             ]
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

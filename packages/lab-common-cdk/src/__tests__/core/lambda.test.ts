@@ -3,7 +3,6 @@ import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import { aws_lambda as lambda, aws_logs as logs, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 /**
  * Basic Test stack
  */
@@ -77,7 +76,7 @@ describe('Tests lambda core functionality', () => {
         }
         );
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests asset path lambda stack', () => {
@@ -113,6 +112,6 @@ describe('Tests lambda core functionality', () => {
             RetentionInDays: 365
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

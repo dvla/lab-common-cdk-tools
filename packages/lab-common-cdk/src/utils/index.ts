@@ -1,13 +1,15 @@
-import { IConstruct } from 'constructs';
-import { Tags, Duration, CfnResource } from 'aws-cdk-lib';
-import moment from 'moment';
-
 import * as _ from 'lodash';
 import * as constants from '../constants';
+import * as fs from 'fs';
+import moment from 'moment';
 import { StageAware } from '../core/defaults';
+import { join } from 'path';
+import { IConstruct } from 'constructs';
+import { App, Stack, Tags, Duration, CfnResource } from 'aws-cdk-lib';
 
 const DEFAULT_STAGE = 'dev';
 export const EXPIRES_FORMAT = 'YYYYMMDDHHmm';
+const DEFAULT_TEMPLATE_DIRECTORY = 'coverage/templates';
 
 /**
  * Gets the 'stage' from the stack context or uses default.
@@ -115,3 +117,16 @@ const arrayConcat : any = (source1: any, source2: any) => {
 export const mergeProperties : any =  (source1: any, source2: any, shouldConcat = true) =>
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     _.mergeWith({}, source1, source2, shouldConcat ? arrayConcat : undefined);
+
+/**
+ * Copies the stack template used to a 'templates' directory.
+ * @param app - the app 
+ * @param stack - the stack to which the templates belong to
+ * @param templateDir - by default stack templates will be copied to the coverage/templates directory. 
+ * Can override default by passing a custom path
+ */
+export const copyStackTemplate = (app: App, stack: Stack, templateDir = DEFAULT_TEMPLATE_DIRECTORY) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    !fs.existsSync(templateDir) && fs.mkdirSync(templateDir, { recursive: true });
+    fs.copyFileSync(join(app.outdir, stack.templateFile), join(templateDir, stack.templateFile))
+};

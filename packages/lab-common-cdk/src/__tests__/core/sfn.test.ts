@@ -11,7 +11,6 @@ import {
     RemovalPolicy
 } from 'aws-cdk-lib';
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -85,7 +84,7 @@ describe('Tests State Machine core functionality', () => {
             RetentionInDays: 7
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests Advanced State Machine stack', () => {
@@ -111,6 +110,6 @@ describe('Tests State Machine core functionality', () => {
             LogGroupName: 'my/logs',
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

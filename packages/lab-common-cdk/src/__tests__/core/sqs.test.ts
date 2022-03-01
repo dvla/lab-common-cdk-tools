@@ -9,7 +9,6 @@ import {
     Duration, aws_sqs as sqs
 } from 'aws-cdk-lib';
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -77,7 +76,7 @@ describe('Tests Queue core functionality', () => {
         expect(stack).toCountResources('AWS::SQS::Queue', 2);
         expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
             QueueName: 'sqstest-test-queue',
-            DelaySeconds: 2,
+            DelaySeconds: 1,
             ReceiveMessageWaitTimeSeconds: 5,
             VisibilityTimeout: 180,
             RedrivePolicy: {
@@ -102,7 +101,7 @@ describe('Tests Queue core functionality', () => {
             ]
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests Fifo Queue stack', () => {
@@ -144,7 +143,7 @@ describe('Tests Queue core functionality', () => {
             ]
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests Lambda worker Queue stack', () => {
@@ -175,6 +174,6 @@ describe('Tests Queue core functionality', () => {
             BatchSize: 5
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

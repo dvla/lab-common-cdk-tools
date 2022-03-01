@@ -6,7 +6,6 @@ import {
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -55,7 +54,7 @@ describe('Tests Basic dynamo table creation functionality', () => {
             }
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests Advanced stack', () => {
@@ -75,6 +74,6 @@ describe('Tests Basic dynamo table creation functionality', () => {
             }
         });
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

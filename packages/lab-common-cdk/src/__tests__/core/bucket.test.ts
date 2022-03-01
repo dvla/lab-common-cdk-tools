@@ -4,7 +4,6 @@ import { Construct } from 'constructs';
 import { aws_s3 as s3, App, Stack, StackProps, Duration } from 'aws-cdk-lib';
 
 import * as lab from '../..';
-import { copyStackTemplate } from '../helper';
 
 /**
  * Basic Test stack
@@ -84,7 +83,7 @@ describe('Tests bucket core functionality', () => {
         }
         );
 
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests advanced bucket stack', () => {
@@ -118,7 +117,7 @@ describe('Tests bucket core functionality', () => {
             ]
         }
         );
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests custom bucket stack', () => {
@@ -151,6 +150,6 @@ describe('Tests bucket core functionality', () => {
             ]
         }
         );
-        copyStackTemplate(app, stack);
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

@@ -9,7 +9,7 @@ import { MergeAware, StageAware } from './defaults';
 import { getStageAwareName, mergeProperties } from '../utils';
 
 export const QUEUE_DEFAULTS = {
-    deliveryDelay: Duration.seconds(2),
+    deliveryDelay: Duration.seconds(1),
     receiveMessageWaitTime: Duration.seconds(5),
     visibilityTimeout: Duration.seconds(180),
 } as Partial<sqs.QueueProps>;
