@@ -8,9 +8,36 @@ import { IConstruct } from 'constructs';
 import { App, Stack, Tags, Duration, CfnResource } from 'aws-cdk-lib';
 
 const DEFAULT_STAGE = 'dev';
+const DEFAULT_PROJECT = 'dvla-emerging-tech';
 export const EXPIRES_FORMAT = 'YYYYMMDDHHmm';
 const DEFAULT_TEMPLATE_DIRECTORY = 'coverage/templates';
 
+/**
+ * Case styles to use.
+ */
+export enum CaseStyle {
+    CAMEL = 'CAMEL',
+    KEBAB = 'KEBAB',
+    SNAKE = 'SNAKE',
+}
+
+/**
+ * Format the txt using the specified case, e.g. CaseStyle.CAMEL
+ * @param txt the text to format
+ * @param style the style to apply.
+ */
+export const applyCase = (txt : string, style? : CaseStyle) : string => {
+    switch (style) {
+    case CaseStyle.CAMEL:
+        return _.camelCase(txt);
+    case CaseStyle.KEBAB:
+        return _.kebabCase(txt);
+    case CaseStyle.SNAKE:
+        return _.snakeCase(txt);
+    default:
+        return txt;
+    }
+}
 /**
  * Gets the 'stage' from the stack context or uses default.
  * Attempts to find a stage in the following order:
@@ -38,11 +65,25 @@ export const getStage = (scope: IConstruct, stageAware? : StageAware): string =>
  * @param scope - a cdk stack
  * @param id - a unique id
  * @param stageAware - should the stage be used
+ * @param nameCase The case to use for the name
  */
-export const getStageAwareName = (scope: IConstruct, id: string, stageAware? : StageAware): string => {
-    const stage = getStage(scope, stageAware);
-    return stage ? `${stage}-${id}` : id;
-};
+export const getStageAwareName =
+    (scope: IConstruct, id: string, stageAware? : StageAware, nameCase? : CaseStyle): string => {
+        const stage = getStage(scope, stageAware);
+        return applyCase(stage ? `${stage}-${id}` : id, nameCase);
+    };
+
+/**
+ * Gets the name of the current project
+ * @param scope - a cdk stack
+ */
+export const getProject = _.memoize((scope: IConstruct): string => {
+    let project = scope.node.tryGetContext('project') as string;
+    if (!project) {
+        project = process.env.CDK_PROJECT  || DEFAULT_PROJECT;
+    }
+    return project;
+});
 
 /**
  * Additional properties to be used when tagging.
@@ -73,7 +114,7 @@ export const tag = (scope: IConstruct, properties?: TagProps) => {
 
     tags.add(
         constants.PROJECT,
-        scope.node.tryGetContext('project') || 'dvla-emerging-tech',
+        getProject(scope),
     );
     tags.add(
         constants.EXPIRES,
@@ -120,9 +161,9 @@ export const mergeProperties : any =  (source1: any, source2: any, shouldConcat 
 
 /**
  * Copies the stack template used to a 'templates' directory.
- * @param app - the app 
+ * @param app - the app
  * @param stack - the stack to which the templates belong to
- * @param templateDir - by default stack templates will be copied to the coverage/templates directory. 
+ * @param templateDir - by default stack templates will be copied to the coverage/templates directory.
  * Can override default by passing a custom path
  */
 export const copyStackTemplate = (app: App, stack: Stack, templateDir = DEFAULT_TEMPLATE_DIRECTORY) => {
