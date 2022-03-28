@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
 import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
-import { App, Stack, StackProps } from 'aws-cdk-lib';
+import { App, aws_lambda as lambda, aws_logs as logs, Duration, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
 
 /**
@@ -35,8 +35,32 @@ class AdvancedTestStack extends Stack {
     }
 }
 
-describe('Tests NodeJs lambda core functionality', () => {
+class CustomBundledTestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
+        super(scope, id, props);
 
+        lab.utils.tag(this);
+
+        const lamb = lab.lambda.NodejsFunction(this, 'test-func', {
+            functionName: 'nice-func',
+            entry: './src/__tests__/fixtures/test-func/basic.ts',
+            handler: 'my.handle',
+            timeout: Duration.seconds(30),
+            environment: {},
+            tracing: lambda.Tracing.ACTIVE,
+            bundling: {
+                minify: false,
+                sourceMap: false,
+                externalModules: [ 'nothing-to-see-here' ]
+            },
+            logRetention: logs.RetentionDays.ONE_WEEK,
+        }, {
+            concatArrays : false
+        });
+    }
+}
+
+describe('Tests NodeJs lambda core functionality', () => {
 
     test('Tests basic lambda stack', () => {
 
@@ -96,6 +120,32 @@ describe('Tests NodeJs lambda core functionality', () => {
             RetentionInDays: 7
         });
 
+        lab.utils.copyStackTemplate(app, stack);
+    });
+
+    test('Tests custom bundled lambda stack', () => {
+
+        // Given
+        const app = new App({
+            context: { stage: 'bundlestack', assetPath: './src/__tests__/fixtures' },
+        });
+
+        // When
+        const stack = new CustomBundledTestStack(app, 'MyBundledTestNodeJSStack');
+
+        // Then
+        expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
+            Handler: 'index.my.handle',
+            MemorySize: 128,
+            Runtime: 'nodejs14.x',
+            Tags: [
+                {
+                    Key: 'lab_project',
+                    Value: 'dvla-emerging-tech'
+                }
+            ]
+        }
+        );
         lab.utils.copyStackTemplate(app, stack);
     });
 });

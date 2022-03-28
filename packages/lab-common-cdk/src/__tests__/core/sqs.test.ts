@@ -92,7 +92,6 @@ describe('Tests Queue core functionality', () => {
         expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
             QueueName: 'sqstest-test-dl-queue',
             MessageRetentionPeriod: 1209600,
-            FifoQueue: false,
             Tags: [
                 {
                     Key: 'lab_project',

@@ -23,9 +23,6 @@ export const LAMBDA_DEFAULTS = {
 
 export const LAMBDA_NODEJS_DEFAULTS = {
     architecture: lambda.Architecture.ARM_64,
-    environment: {
-        NODE_OPTIONS: '--enable-source-maps',
-    },
     runtime: lambda.Runtime.NODEJS_14_X,
     handler: 'handler',
     memorySize: 128,
@@ -33,11 +30,10 @@ export const LAMBDA_NODEJS_DEFAULTS = {
     tracing: lambda.Tracing.ACTIVE,
     logRetention: logs.RetentionDays.ONE_WEEK,
     bundling: {
-        minify: true,
-        sourceMap: true,
+        minify: false,
+        sourceMap: false,
         externalModules: [
-            'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
-            '@aws-sdk'
+            'aws-sdk', // Use the v2 'aws-sdk' available in the Lambda runtime
         ],
     }
 } as Partial<nodejs.NodejsFunctionProps>;

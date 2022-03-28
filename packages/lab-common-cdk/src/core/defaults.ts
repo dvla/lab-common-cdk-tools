@@ -14,7 +14,7 @@ export interface StageAware {
 export interface MergeAware {
     /**
      * Should property arrays be concatenated together?
-     * @Default true
+     * Default: true
      */
     readonly concatArrays?: boolean;
 }

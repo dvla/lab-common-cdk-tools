@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { aws_apigateway as apigateway } from 'aws-cdk-lib';
+import { aws_apigateway as apigateway, aws_logs as logs, RemovalPolicy } from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
 import { getStageAwareName, mergeProperties, getStage } from '../utils';
 
@@ -18,7 +18,7 @@ export const RESTAPI_DEFAULTS = {
 export interface RestApiParams extends StageAware, MergeAware {
     /**
      * Should Cors be enabled.
-     * @Default false
+     * Default: false
      */
     readonly enableCors: boolean;
 }
@@ -58,6 +58,31 @@ export const RestApi = (
     }
 
     const defaultProps = mergeProperties(RESTAPI_DEFAULTS, restApiProps);
+
+    if (!props?.deployOptions?.accessLogDestination) {
+        const logDestination = new logs.LogGroup(scope, `${id}AccessLogGroup`, {
+            removalPolicy: RemovalPolicy.DESTROY,
+            retention: logs.RetentionDays.ONE_WEEK,
+        });
+        defaultProps.deployOptions.accessLogDestination = new apigateway.LogGroupLogDestination(logDestination);
+        defaultProps.deployOptions.accessLogFormat = JSON.stringify({
+            stage : '$context.stage',
+            request_id : '$context.requestId',
+            api_id : '$context.apiId',
+            resource_path : '$context.resourcePath',
+            resource_id : '$context.resourceId',
+            http_method : '$context.httpMethod',
+            source_ip : '$context.identity.sourceIp',
+            user_agent : '$context.identity.userAgent',
+            account_id : '$context.identity.accountId',
+            api_key : '$context.identity.apiKey',
+            caller : '$context.identity.caller',
+            user : '$context.identity.user',
+            user_arn : '$context.identity.userArn',
+            integration_latency: '$context.integration.latency'
+        });
+    }
+
     const createdRestApi = new apigateway.RestApi(scope, id, mergeProperties(defaultProps, props))
     return createdRestApi;
 }

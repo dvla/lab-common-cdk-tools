@@ -57,7 +57,7 @@ describe('Tests API Gateway RestAPI core functionality', () => {
         });
 
         // When
-        const stack = new TestStack(app, 'MyTestStack');
+        const stack = new TestStack(app, 'MyAPIGatewayTestStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::ApiGateway::RestApi', {
@@ -82,6 +82,7 @@ describe('Tests API Gateway RestAPI core functionality', () => {
                 }
             ]
         });
+        lab.utils.copyStackTemplate(app, stack);
     });
 
     test('Tests Advanced RestAPI stack', () => {
@@ -91,7 +92,7 @@ describe('Tests API Gateway RestAPI core functionality', () => {
         });
 
         // When
-        const stack = new AdvancedTestStack(app, 'MyAdvTestStack');
+        const stack = new AdvancedTestStack(app, 'MyAdvAPIGatewayTestStack');
 
         // Then
         expect(stack).toHaveResourceLike('AWS::ApiGateway::RestApi', {
@@ -103,5 +104,6 @@ describe('Tests API Gateway RestAPI core functionality', () => {
             TracingEnabled: true,
             Description : 'Advanced API'
         });
+        lab.utils.copyStackTemplate(app, stack);
     });
 });

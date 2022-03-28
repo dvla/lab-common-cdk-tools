@@ -15,13 +15,13 @@ export const BUCKET_DEFAULTS = {
 export interface BucketParams extends StageAware, MergeAware {
     /**
      * Should Cors be enabled.
-     * @Default false
+     * Default: false
      */
     readonly enableCors: boolean;
 
     /**
      * Should content be removed after 14 days?
-     * @Default true
+     * Default: true
      */
     readonly expireContent: boolean;
 }

@@ -26,7 +26,7 @@ export interface QueueParams extends StageAware, MergeAware {
 
     /**
      * The number of times a message can be unsuccessfully dequeued before being moved to the dead-letter queue.
-     * @default 3
+     * Default: 3
      */
     readonly dlqMaxReceiveCount?: number;
 
@@ -37,7 +37,7 @@ export interface QueueParams extends StageAware, MergeAware {
 
     /**
      * The largest number of records that Lambda will retrieve at the time of invoking your function.
-     * @default 10
+     * Default: 10
      */
     readonly lambdaBatchSize?: number;
 }
@@ -64,9 +64,14 @@ export const Queue = (scope: Construct, id: string, props?:  Partial<sqs.QueuePr
         queueName : dlQName,
         // 14 days is the maximum (we want to keep as long as possible).
         retentionPeriod: Duration.days(14),
-        fifo: isFifo,
         contentBasedDeduplication: props?.contentBasedDeduplication ?? false
     };
+
+    // There is a bug with FIFO at the moment
+    // https://github.com/aws/aws-cdk/issues/8550
+    if (isFifo) {
+        dlQueueProps.fifo = true
+    }
 
     const createdDlq = new sqs.Queue(scope, dlQName, mergeProperties(dlQueueProps, params?.dlq));
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
 import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
-import { aws_lambda as lambda, aws_logs as logs, App, Stack, StackProps } from 'aws-cdk-lib';
+import { aws_lambda as lambda, aws_logs as logs, App, Stack, StackProps, Duration } from 'aws-cdk-lib';
 import * as lab from '../..';
 /**
  * Basic Test stack
@@ -17,7 +17,7 @@ class TestStack extends Stack {
 }
 
 /**
- * More Adanced test stack
+ * More Advanced test stack
  */
 class AdvancedTestStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
