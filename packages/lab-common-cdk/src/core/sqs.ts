@@ -55,6 +55,7 @@ export const Queue = (scope: Construct, id: string, props?:  Partial<sqs.QueuePr
     params?:Partial<QueueParams>): sqs.Queue => {
 
     const isFifo = props?.fifo ?? false;
+    const deduplication = props?.contentBasedDeduplication ?? false
     const queuePrefix = getStageAwareName(scope, id, params);
     const queueName = `${queuePrefix}-queue${isFifo?'.fifo':''}`
     const dlQName = `${queuePrefix}-dl-queue${isFifo?'.fifo':''}`
@@ -64,7 +65,6 @@ export const Queue = (scope: Construct, id: string, props?:  Partial<sqs.QueuePr
         queueName : dlQName,
         // 14 days is the maximum (we want to keep as long as possible).
         retentionPeriod: Duration.days(14),
-        contentBasedDeduplication: props?.contentBasedDeduplication ?? false
     };
 
     // There is a bug with FIFO at the moment
@@ -72,8 +72,17 @@ export const Queue = (scope: Construct, id: string, props?:  Partial<sqs.QueuePr
     if (isFifo) {
         dlQueueProps.fifo = true
     }
+    if (deduplication) {
+        dlQueueProps.contentBasedDeduplication = true
+    }
 
     const createdDlq = new sqs.Queue(scope, dlQName, mergeProperties(dlQueueProps, params?.dlq));
+    createdDlq.metricApproximateNumberOfMessagesVisible().createAlarm(scope, dlQName+ 'MessagesVisible', {
+        alarmName: `${dlQName}-messages`,
+        alarmDescription : 'The dead letter queue is filling up with messages',
+        threshold: 10,
+        evaluationPeriods: 1
+    });
 
     // Now create the main queue
     const queueProps: any = {

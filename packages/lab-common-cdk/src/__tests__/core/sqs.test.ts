@@ -100,6 +100,10 @@ describe('Tests Queue core functionality', () => {
             ]
         });
 
+        expect(stack).toHaveResourceLike('AWS::CloudWatch::Alarm', {
+            AlarmName: 'sqstest-test-dl-queue-messages',
+            MetricName: 'ApproximateNumberOfMessagesVisible'
+        });
         lab.utils.copyStackTemplate(app, stack);
     });
 
