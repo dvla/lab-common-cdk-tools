@@ -103,7 +103,8 @@ export const Function = (scope: Construct, id: string, props?: Partial<lambda.Fu
     const defaultProps = mergeProperties(LAMBDA_DEFAULTS, funcProps);
 
     // Create a Node Lambda with conventions
-    const createdLambda = new lambda.Function(scope, fullFunctionName, mergeProperties(defaultProps, props));
+    const createdLambda = new lambda.Function(scope, fullFunctionName,
+        <lambda.FunctionProps> mergeProperties(defaultProps, props));
     addDefaults(createdLambda, fullFunctionName);
     return createdLambda;
 };

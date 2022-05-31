@@ -6,7 +6,7 @@ import {
 } from 'aws-cdk-lib';
 import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 import { MergeAware, StageAware } from './defaults';
-import { getStageAwareName, mergeProperties } from '../utils';
+import { getStageAwareName, mergeProperties, PartialWritable } from '../utils';
 
 export const QUEUE_DEFAULTS = {
     deliveryDelay: Duration.seconds(1),
@@ -43,6 +43,47 @@ export interface QueueParams extends StageAware, MergeAware {
 }
 
 /**
+ * Additional parameters used by the DLQueue creation function.
+ */
+export interface DLQueueParams extends StageAware, MergeAware {
+    readonly alarm?: boolean
+}
+
+/**
+ * Creates a Dead letter queue with sensible defaults.
+ * Creates an alarm for message visibility
+ * @param scope
+ * @param id
+ * @param props
+ * @param params
+ * @constructor
+ */
+export const DLQueue = (scope: Construct, id: string, props?:  Partial<sqs.QueueProps>,
+    params?:Partial<DLQueueParams>): sqs.Queue => {
+
+    const isFifo = props?.fifo ?? false;
+    const queuePrefix = getStageAwareName(scope, id, params);
+    const dlQName = `${queuePrefix}-dl-queue${isFifo?'.fifo':''}`
+
+    // Create the dead letter queue
+    const dlQueueProps: Partial<sqs.QueueProps> = {
+        queueName : dlQName,
+        // 14 days is the maximum (we want to keep as long as possible).
+        retentionPeriod: props?.retentionPeriod ?? Duration.days(14),
+    };
+
+    const createdDlq = new sqs.Queue(scope, dlQName, mergeProperties(dlQueueProps, props));
+    createdDlq.metricApproximateNumberOfMessagesVisible().createAlarm(scope, dlQName+ 'MessagesVisible', {
+        alarmName: `${dlQName}-messages`,
+        alarmDescription : 'The dead letter queue is filling up with messages',
+        threshold: 5,
+        evaluationPeriods: 1
+    });
+
+    return createdDlq;
+};
+
+/**
  * Creates a standard Queue, using sensible defaults where possible.
  * The optional custom QueueProps will override the default parameters.
  * @param scope - the stack
@@ -55,43 +96,31 @@ export const Queue = (scope: Construct, id: string, props?:  Partial<sqs.QueuePr
     params?:Partial<QueueParams>): sqs.Queue => {
 
     const isFifo = props?.fifo ?? false;
-    const deduplication = props?.contentBasedDeduplication ?? false
     const queuePrefix = getStageAwareName(scope, id, params);
     const queueName = `${queuePrefix}-queue${isFifo?'.fifo':''}`
-    const dlQName = `${queuePrefix}-dl-queue${isFifo?'.fifo':''}`
 
-    // Create the dead letter queue
-    const dlQueueProps: any = {
-        queueName : dlQName,
-        // 14 days is the maximum (we want to keep as long as possible).
-        retentionPeriod: Duration.days(14),
-    };
-
-    // There is a bug with FIFO at the moment
-    // https://github.com/aws/aws-cdk/issues/8550
+    const dlqProps: PartialWritable<sqs.QueueProps>
+        = mergeProperties(QUEUE_DEFAULTS, params?.dlq ? params?.dlq : {} );
     if (isFifo) {
-        dlQueueProps.fifo = true
+        dlqProps.fifo = true
+        dlqProps.contentBasedDeduplication = true
     }
-    if (deduplication) {
-        dlQueueProps.contentBasedDeduplication = true
-    }
-
-    const createdDlq = new sqs.Queue(scope, dlQName, mergeProperties(dlQueueProps, params?.dlq));
-    createdDlq.metricApproximateNumberOfMessagesVisible().createAlarm(scope, dlQName+ 'MessagesVisible', {
-        alarmName: `${dlQName}-messages`,
-        alarmDescription : 'The dead letter queue is filling up with messages',
-        threshold: 10,
-        evaluationPeriods: 1
-    });
+    const createdDlq = DLQueue(scope, id, dlqProps)
 
     // Now create the main queue
-    const queueProps: any = {
+    const queueProps: PartialWritable<sqs.QueueProps> = {
         queueName,
         deadLetterQueue: {
             maxReceiveCount: params?.dlqMaxReceiveCount ?? 3,
             queue: createdDlq,
         },
-    };
+    }
+    // There is a bug with FIFO at the moment
+    // https://github.com/aws/aws-cdk/issues/8550
+    if (isFifo) {
+        queueProps.fifo = true
+        queueProps.contentBasedDeduplication = true
+    }
     const defaultProps = mergeProperties(QUEUE_DEFAULTS, queueProps);
     const createdQueue = new sqs.Queue(scope, id, mergeProperties(defaultProps, props));
 
@@ -117,7 +146,7 @@ export const Queue = (scope: Construct, id: string, props?:  Partial<sqs.QueuePr
  */
 export const FifoQueue = (scope: Construct, id: string, props?:  Partial<sqs.QueueProps>,
     params?:Partial<QueueParams>): sqs.Queue => {
-    const fifoProps : any = {
+    const fifoProps : Partial<sqs.QueueProps> = {
         fifo : true,
         contentBasedDeduplication : true
     };

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
+/* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file,@typescript-eslint/no-unsafe-assignment */
 import '@aws-cdk/assert/jest';
 import { Construct } from 'constructs';
 import {
@@ -24,6 +24,19 @@ class TestStack extends Stack {
 }
 
 /**
+ * Basic Test stack
+ */
+class DLQTestStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
+        super(scope, id, props);
+
+        lab.utils.tag(this);
+
+        const basicQueue = lab.sqs.DLQueue(this, 'test');
+    }
+}
+
+/**
  * FIFO stack
  */
 class TestFifoStack extends Stack {
@@ -36,6 +49,27 @@ class TestFifoStack extends Stack {
             deliveryDelay: Duration.seconds(8)
         }, {
             dlqMaxReceiveCount: 2
+        });
+    }
+}
+
+/**
+ * FIFO stack via props
+ */
+class TestFifoPropsStack extends Stack {
+    constructor(scope: Construct, id: string, props?: StackProps) {
+        super(scope, id, props);
+
+        lab.utils.tag(this);
+
+        const fifoQueue = lab.sqs.Queue(this, 'testfq', {
+            fifo: true,
+            deliveryDelay: Duration.seconds(6)
+        }, {
+            dlq: {
+                retentionPeriod : Duration.days(5)
+            },
+            dlqMaxReceiveCount: 1
         });
     }
 }
@@ -146,6 +180,79 @@ describe('Tests Queue core functionality', () => {
             ]
         });
 
+        lab.utils.copyStackTemplate(app, stack);
+    });
+
+    test('Tests Fifo Queue configured via props stack', () => {
+        // Given
+        const app = new App({
+            context: { project: 'my-t-queue', stage: 'testing' },
+        });
+
+        // When
+        const stack = new TestFifoPropsStack(app, 'FiFoTestStack');
+
+        // Then
+        expect(stack).toCountResources('AWS::SQS::Queue', 2);
+        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+            QueueName: 'testing-testfq-queue.fifo',
+            DelaySeconds: 6,
+            FifoQueue: true,
+            ContentBasedDeduplication: true,
+            RedrivePolicy: {
+                maxReceiveCount: 1,
+            },
+            Tags: [
+                {
+                    Key: 'lab_project',
+                    Value: 'my-t-queue'
+                }
+            ]
+        });
+        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+            QueueName: 'testing-testfq-dl-queue.fifo',
+            MessageRetentionPeriod: 432000,
+            FifoQueue: true,
+            ContentBasedDeduplication: true,
+            Tags: [
+                {
+                    Key: 'lab_project',
+                    Value: 'my-t-queue'
+                }
+            ]
+        });
+
+        lab.utils.copyStackTemplate(app, stack);
+    });
+
+    test('Tests DLQ Queue stack', () => {
+        // Given
+        const app = new App({
+            context: { project: 'my-test-queue', stage: 'sqstest' },
+        });
+
+        // When
+        const stack = new DLQTestStack(app, 'MyTestDLQSQSStack');
+
+        // Then
+        expect(stack).toCountResources('AWS::SQS::Queue', 1);
+        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+            QueueName: 'sqstest-test-dl-queue',
+            MessageRetentionPeriod: 1209600,
+            Tags: [
+                {
+                    Key: 'lab_project',
+                    Value: 'my-test-queue'
+                }
+            ]
+        });
+
+        expect(stack).toHaveResourceLike('AWS::CloudWatch::Alarm', {
+            AlarmName: 'sqstest-test-dl-queue-messages',
+            AlarmDescription: 'The dead letter queue is filling up with messages',
+            MetricName: 'ApproximateNumberOfMessagesVisible',
+            Threshold: 5
+        });
         lab.utils.copyStackTemplate(app, stack);
     });
 

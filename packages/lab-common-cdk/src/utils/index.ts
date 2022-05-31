@@ -22,11 +22,18 @@ export enum CaseStyle {
 }
 
 /**
+ * A type that is writable and partial
+ */
+export type PartialWritable<T> = {
+    -readonly [P in keyof T]+?: T[P]
+}
+
+/**
  * Format the txt using the specified case, e.g. CaseStyle.CAMEL
  * @param txt the text to format
  * @param style the style to apply.
  */
-export const applyCase = (txt : string, style? : CaseStyle) : string => {
+export const applyCase = (txt: string, style?: CaseStyle): string => {
     switch (style) {
     case CaseStyle.CAMEL:
         return _.camelCase(txt);
@@ -48,13 +55,13 @@ export const applyCase = (txt : string, style? : CaseStyle) : string => {
  * @param scope - a cdk stack
  * @param stageAware - should the stage be used
  */
-export const getStage = (scope: IConstruct, stageAware? : StageAware): string => {
+export const getStage = (scope: IConstruct, stageAware?: StageAware): string => {
     if (stageAware && stageAware.useStage === false) {
         return '';
     }
     let stage = scope.node.tryGetContext('stage') as string;
     if (!stage) {
-        stage = process.env.CDK_STAGE  || DEFAULT_STAGE;
+        stage = process.env.CDK_STAGE || DEFAULT_STAGE;
     }
     return stage;
 };
@@ -68,7 +75,7 @@ export const getStage = (scope: IConstruct, stageAware? : StageAware): string =>
  * @param nameCase The case to use for the name
  */
 export const getStageAwareName =
-    (scope: IConstruct, id: string, stageAware? : StageAware, nameCase? : CaseStyle): string => {
+    (scope: IConstruct, id: string, stageAware?: StageAware, nameCase?: CaseStyle): string => {
         const stage = getStage(scope, stageAware);
         return applyCase(stage ? `${stage}-${id}` : id, nameCase);
     };
@@ -80,7 +87,7 @@ export const getStageAwareName =
 export const getProject = _.memoize((scope: IConstruct): string => {
     let project = scope.node.tryGetContext('project') as string;
     if (!project) {
-        project = process.env.CDK_PROJECT  || DEFAULT_PROJECT;
+        project = process.env.CDK_PROJECT || DEFAULT_PROJECT;
     }
     return project;
 });
@@ -93,8 +100,8 @@ export interface TagProps {
      * Duration from now until the stack should be considered expired.
      * @Default Duration.days(100)
      */
-    readonly expires : Duration;
-};
+    readonly expires: Duration;
+}
 
 /**
  * Add default tags to a stack.
@@ -127,7 +134,7 @@ export const tag = (scope: IConstruct, properties?: TagProps) => {
  * @param scope - a resource
  * @param rules - and array of suppression messages.
  */
-export const nagSuppress = (scope: IConstruct, rules: any) => {
+export const nagSuppress = (scope: IConstruct, rules: object) => {
     (scope.node.defaultChild as CfnResource).addMetadata('cfn_nag', {
         rules_to_suppress: rules
     });
@@ -139,8 +146,8 @@ export const nagSuppress = (scope: IConstruct, rules: any) => {
  * @param source2
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const arrayConcat : any = (source1: any, source2: any) => {
-    if(Array.isArray(source1)){
+const arrayConcat = <T>(source1: T, source2: T) => {
+    if (Array.isArray(source1)) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return source1.concat(source2)
     }
@@ -155,9 +162,10 @@ const arrayConcat : any = (source1: any, source2: any) => {
  * @param shouldConcat - by default arrays will be concatenated together, disable this by setting shouldConcat to false.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const mergeProperties : any =  (source1: any, source2: any, shouldConcat = true) =>
+export const mergeProperties = <T>(source1: T, source2: T, shouldConcat = true): T => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    _.mergeWith({}, source1, source2, shouldConcat ? arrayConcat : undefined);
+    return _.mergeWith({}, source1, source2, shouldConcat ? arrayConcat : undefined);
+}
 
 /**
  * Copies the stack template used to a 'templates' directory.

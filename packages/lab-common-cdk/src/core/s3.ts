@@ -1,7 +1,7 @@
 import { Construct } from 'constructs';
 import { aws_s3 as s3, Duration, RemovalPolicy } from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
-import { getStage, mergeProperties, nagSuppress } from '../utils';
+import { getStage, mergeProperties, nagSuppress, PartialWritable } from '../utils';
 
 export const BUCKET_DEFAULTS = {
     encryption: s3.BucketEncryption.S3_MANAGED,
@@ -42,7 +42,7 @@ export const Bucket = (scope: Construct, id: string, props?:  Partial<s3.BucketP
     const stage = getStage(scope, params);
     const bucketName = stage ? `${id}-${stage}` : id;
 
-    const bucketProps: any = {
+    const bucketProps: PartialWritable<s3.BucketProps> = {
         bucketName: bucketName.toLowerCase(),
     };
     const enableCors = params?.enableCors ?? false;

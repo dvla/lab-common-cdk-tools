@@ -80,7 +80,8 @@ describe('Tests API Gateway RestAPI core functionality', () => {
                     MetricsEnabled: true,
                     ResourcePath: '/*'
                 }
-            ]
+            ],
+            AccessLogSetting: {}
         });
         lab.utils.copyStackTemplate(app, stack);
     });

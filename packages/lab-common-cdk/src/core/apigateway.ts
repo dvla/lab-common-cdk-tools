@@ -1,7 +1,7 @@
 import { Construct } from 'constructs';
 import { aws_apigateway as apigateway, aws_logs as logs, RemovalPolicy } from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
-import { getStageAwareName, mergeProperties, getStage } from '../utils';
+import { getStage, getStageAwareName, mergeProperties, PartialWritable } from '../utils';
 
 export const RESTAPI_DEFAULTS = {
     deployOptions: {
@@ -40,7 +40,7 @@ export const RestApi = (
 {
     const enableCors = params?.enableCors ?? false;
     const apiGatewayName = getStageAwareName(scope, id, params);
-    const restApiProps: any = {
+    const restApiProps: PartialWritable<apigateway.RestApiProps> = {
         restApiName: apiGatewayName.toLowerCase(),
     };
 
@@ -64,25 +64,26 @@ export const RestApi = (
             removalPolicy: RemovalPolicy.DESTROY,
             retention: logs.RetentionDays.ONE_WEEK,
         });
-        defaultProps.deployOptions.accessLogDestination = new apigateway.LogGroupLogDestination(logDestination);
-        defaultProps.deployOptions.accessLogFormat = JSON.stringify({
-            stage : '$context.stage',
-            request_id : '$context.requestId',
-            api_id : '$context.apiId',
-            resource_path : '$context.resourcePath',
-            resource_id : '$context.resourceId',
-            http_method : '$context.httpMethod',
-            source_ip : '$context.identity.sourceIp',
-            user_agent : '$context.identity.userAgent',
-            account_id : '$context.identity.accountId',
-            api_key : '$context.identity.apiKey',
-            caller : '$context.identity.caller',
-            user : '$context.identity.user',
-            user_arn : '$context.identity.userArn',
-            integration_latency: '$context.integration.latency'
+
+        defaultProps.deployOptions = mergeProperties(defaultProps.deployOptions, {
+            accessLogDestination: new apigateway.LogGroupLogDestination(logDestination),
+            accessLogFormat: apigateway.AccessLogFormat.custom(JSON.stringify({
+                stage: '$context.stage',
+                request_id: '$context.requestId',
+                api_id: '$context.apiId',
+                resource_path: '$context.resourcePath',
+                resource_id: '$context.resourceId',
+                http_method: '$context.httpMethod',
+                source_ip: '$context.identity.sourceIp',
+                user_agent: '$context.identity.userAgent',
+                account_id: '$context.identity.accountId',
+                api_key: '$context.identity.apiKey',
+                caller: '$context.identity.caller',
+                user: '$context.identity.user',
+                user_arn: '$context.identity.userArn',
+                integration_latency: '$context.integration.latency'
+            }))
         });
     }
-
-    const createdRestApi = new apigateway.RestApi(scope, id, mergeProperties(defaultProps, props))
-    return createdRestApi;
+    return new apigateway.RestApi(scope, id, mergeProperties(defaultProps, props));
 }

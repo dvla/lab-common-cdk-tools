@@ -1,12 +1,7 @@
 import { Construct } from 'constructs';
-import {
-    Duration,
-    RemovalPolicy,
-    aws_logs as logs,
-    aws_stepfunctions as sfn
-} from 'aws-cdk-lib';
+import { aws_logs as logs, aws_stepfunctions as sfn, Duration, RemovalPolicy } from 'aws-cdk-lib';
 import { MergeAware, StageAware } from './defaults';
-import { getStageAwareName, mergeProperties } from '../utils';
+import { getStageAwareName, mergeProperties, PartialWritable } from '../utils';
 
 export const STATE_MACHINE_DEFAULTS = {
     logs: {
@@ -35,7 +30,7 @@ export const StateMachine = (scope: Construct, id: string, props?:  Partial<sfn.
     params?:Partial<StateMachineParams>): sfn.StateMachine => {
 
     const stateMachineName = getStageAwareName(scope, id, params);
-    const machineProps: any = {
+    const machineProps: PartialWritable<sfn.StateMachineProps> = {
         stateMachineName
     };
 
@@ -49,7 +44,7 @@ export const StateMachine = (scope: Construct, id: string, props?:  Partial<sfn.
         })
     }
 
-    const defaultProps = mergeProperties(STATE_MACHINE_DEFAULTS, machineProps);
-    const createdStateMachine = new sfn.StateMachine(scope, id, mergeProperties(defaultProps, props));
-    return createdStateMachine;
+    const defaultProps = mergeProperties(STATE_MACHINE_DEFAULTS, machineProps as Partial<sfn.StateMachineProps>);
+    return new sfn.StateMachine(scope, id,
+        <sfn.StateMachineProps>mergeProperties(defaultProps, props ? props : {}));
 };

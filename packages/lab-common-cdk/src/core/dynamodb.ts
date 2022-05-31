@@ -29,5 +29,5 @@ export const Table = (scope: Construct, id: string, props?:  Partial<dynamodb.Ta
     params?:Partial<TableParams>): dynamodb.Table => {
 
     const tableName = getStageAwareName(scope, id, params);
-    return new dynamodb.Table(scope, tableName, mergeProperties(TABLE_DEFAULTS, props));
+    return new dynamodb.Table(scope, tableName, <dynamodb.TableProps> mergeProperties(TABLE_DEFAULTS, props));
 };
