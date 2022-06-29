@@ -38,7 +38,7 @@ steps:
     pull: if-not-exists
     image: *base--image
     commands:
-      - npm run lint
+      - npm run lint --workspaces
     depends_on:
       - build
 

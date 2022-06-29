@@ -3,13 +3,15 @@
   "private": true,
   "license": "MIT",
   "description": "DVLA Emerging Tech Lab CDK Tools",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "audit": "lerna exec -- npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
-    "build": "lerna run build",
-    "outdated": "lerna exec -- npm run outdated",
-    "lint": "lerna run lint",
-    "test": "lerna run test",
-    "typecheck": "lerna exec -- tsc --noEmit",
+    "audit": "npm run audit --workspaces",
+    "build": "npm run build --workspaces",
+    "outdated": "npm run outdated --workspaces",
+    "lint": "npm run lint --workspaces",
+    "test": "npm run test --workspaces",
     "bootstrap-ci": "lerna bootstrap",
     "version": "lerna version --no-push",
     "publish": "lerna publish from-package --yes",
@@ -24,10 +26,30 @@
     }
   },
   "devDependencies": {
+    "@aws-cdk/assert": "2.29.1",
     "@digitalroute/cz-conventional-changelog-for-jira": "^7.3.0",
-    "@types/node": "^17.0.23",
+    "@types/jest": "28.1.2",
+    "@types/lodash": "4.14.182",
+    "@types/node": "17.0.23",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "aws-cdk-lib": "2.29.1",
+    "constructs": "10.1.42",
+    "conventional-changelog-conventionalcommits": "5.0.0",
     "commitizen": "^4.2.4",
-    "lerna": "^4.0.0",
-    "typescript": "^4.6.3"
+    "esbuild": "0.14.47",
+    "eslint": "8.18.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "2.7.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jest": "26.5.3",
+    "jest": "28.1.1",
+    "lerna": "^5.1.6",
+    "npm-check-updates": "14.0.1",
+    "prettier": "2.7.1",
+    "ts-jest": "28.0.5",
+    "tslib": "^2.4.0",
+    "typescript": "4.7.4"
   }
 }

@@ -4,8 +4,54 @@
   ],
   "command": {
     "version": {
-      "message": "Increment new version %s (lerna)"
+      "message": "chore(release): Increment new version %s (lerna)"
     }
+  },
+  "changelogPreset": {
+    "name": "conventionalcommits",
+    "header": "# ETL Change Log",
+    "types": [
+      {
+        "type": "feat",
+        "section": "✨ Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐛 Bug Fixes"
+      },
+      {
+        "type": "chore",
+        "section": "🧹 Chores"
+      },
+      {
+        "type": "docs",
+        "section": "📝 Documentation"
+      },
+      {
+        "type": "style",
+        "hidden": true
+      },
+      {
+        "type": "refactor",
+        "section": "🎨 Refactor"
+      },
+      {
+        "type": "perf",
+        "section": "⚡️ Performance"
+      },
+      {
+        "type": "test",
+        "section": "🧪 Test"
+      },
+      {
+        "type": "ci",
+        "section": "🤖 Continuous Integration"
+      },
+      {
+        "type": "revert",
+        "section": "🕰️ Revert"
+      }
+    ]
   },
   "version": "2.0.9"
 }

@@ -1,0 +1,70 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json"
+    ],
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "jest"
+  ],
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:jest/recommended",
+    "prettier"
+  ],
+  "env": {
+    "node": true,
+    "browser": false,
+    "jest": true
+  },
+  "ignorePatterns": [
+    "dist",
+    "coverage",
+    "node_modules",
+    ".*.js",
+    "*.d.ts",
+    "*config.js"
+  ],
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/no-self-import": "error",
+    "import/no-extraneous-dependencies": "warn",
+    "import/no-useless-path-segments": [
+      "error",
+      {
+        "noUselessIndex": true
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
+    "indent": [
+      "error",
+      4
+    ],
+    "quotes": [
+      "warn",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ]
+  },
+  "root": true
+}

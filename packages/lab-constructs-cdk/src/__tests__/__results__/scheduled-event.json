@@ -1,0 +1,22 @@
+{
+    "account": "123456789012",
+    "detail-type": "Scheduled Event",
+    "id": "cdc73f9d-aea9-11e3-9d5a-835b769c0d9c",
+    "detail.Description": "This is an example rule.",
+    "detail.RuleArn": "arn:aws:events:us-east-1:123456789012:rule/ExampleRule",
+    "detail.RuleName": "ExampleRule",
+    "detail.ScheduleExpression": "rate(5 minutes)",
+    "detail.ScheduledEventId": 1,
+    "detail.State": "ENABLED",
+    "detail.Targets.0.Arn": "arn:aws:lambda:us-east-1:123456789012:function:ExampleFunction",
+    "detail.Targets.0.Id": "ExampleTargetId",
+    "detail.Targets.0.Input": "",
+    "detail.Targets.0.InputPath": "$",
+    "detail.Targets.0.InputTransformer.InputPathsMap.$": "/",
+    "detail.Targets.0.InputTransformer.InputTemplate": "<![CDATA[{\"key1\": {\"key2\": \"value\"}}]]>",
+    "detail.Time": "1970-01-01T00:00:00Z",
+    "region": "us-east-1",
+    "resources.0": "arn:aws:events:us-east-1:123456789012:rule/ExampleRule",
+    "source": "aws.events",
+    "time": "1970-01-01T00:00:00Z"
+}

@@ -1,0 +1,19 @@
+{
+    "Records.0.EventSource": "aws:sns",
+    "Records.0.EventSubscriptionArn": "arn:aws:sns:us-east-1::ExampleTopic",
+    "Records.0.EventVersion": "1.0",
+    "Records.0.Sns.Message": "example message",
+    "Records.0.Sns.MessageAttributes.Test.Type": "String",
+    "Records.0.Sns.MessageAttributes.Test.Value": "TestString",
+    "Records.0.Sns.MessageAttributes.TestBinary.Type": "Binary",
+    "Records.0.Sns.MessageAttributes.TestBinary.Value": "TestBinary",
+    "Records.0.Sns.MessageId": "95df01b4-ee98-5cb9-9903-4c221d41eb5e",
+    "Records.0.Sns.Signature": "EXAMPLE",
+    "Records.0.Sns.SignatureVersion": "1",
+    "Records.0.Sns.SigningCertUrl": "EXAMPLE",
+    "Records.0.Sns.Subject": "example subject",
+    "Records.0.Sns.Timestamp": "1970-01-01T00:00:00.000Z",
+    "Records.0.Sns.TopicArn": "arn:aws:sns:us-east-1:123456789012:ExampleTopic",
+    "Records.0.Sns.Type": "Notification",
+    "Records.0.Sns.UnsubscribeUrl": "EXAMPLE"
+}

@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'lab-common-cdk',
+  displayName: 'lab-constructs-cdk',
   roots: ['<rootDir>/src/__tests__'],
   testMatch: ['**/*.test.ts'],
   transform: {

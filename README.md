@@ -3,8 +3,15 @@
 ## Projects
 
 - [Lab Common CDK](packages/lab-common-cdk): The main cdk tools.
-- [TODO] Lab Constructs - Higher Level constructs similar to [CDK Patterns](https://cdkpatterns.com/).
-- [TODO] Lab Validation - Standard rules to validate CDK projects.
+- [Lab Constructs](packages/lab-constructs-cdk) - Higher Level constructs similar to [CDK Patterns](https://cdkpatterns.com/).
+
+### Quick Start
+This is a monorepo that uses [NPM workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) and [Lerna](https://lerna.js.org/docs/introduction).
+
+- When you run `npm install` in the root folder, all dependencies of all packages are installed.
+- To install dependencies for a package use `npm i <the-dependency> -w <package-name>`.
+- Run a script using `npm run <script> -w <package-name>`, e.g `npm run lint -w @dvla/lab-constructs-cdk`
+- To run tests `npm run test` in the root folder. It will use the `test` script to run `npm run test --workspaces`, which runs the script in each workspace.
 
 ### Some useful reference CDK resources
 

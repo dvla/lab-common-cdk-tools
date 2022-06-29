@@ -45,7 +45,7 @@ describe('Tests stack template copying functionality', () => {
         // Given
         const app = new App();
         const stack = new TestStack(app, 'MyCustomComplexCopyTemplateStack');
-        const customTempDir = 'dir1/dir2/custom_temp_dir'
+        const customTempDir = 'coverage/dir1/dir2/custom_temp_dir'
 
         // Then
         expect(stack).toCountResources('AWS::S3::Bucket', 1);
