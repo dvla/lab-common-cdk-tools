@@ -13,6 +13,17 @@
 - [CDK Patterns](https://cdkpatterns.com/)
 - [CDK dependencies in L3 constructs](https://dev.to/udondan/correctly-defining-dependencies-in-l3-cdk-constructs-45p)
 
+## Commiting to Repository
+Standardised commit messages are used on this repo using commitizen with a jira NPM package. Do the following to set it up:
+
+1. Install pre-commit hooks
+```bash
+brew install pre-commit
+pre-commit install
+```
+2. To commit to repository run `npm run commit` then follow the menu in the CLI
+3. To skip false positive rules `SKIP=[hook-type] npm run commit`
+
 ## License
 The MIT License (MIT)
 

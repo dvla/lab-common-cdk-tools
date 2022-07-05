@@ -1,0 +1,50 @@
+{ "skip": {
+    "bump": true,
+    "commit": true,
+    "tag": true
+  },
+  "types": [
+    {
+      "type": "feat",
+      "section": "✨ Features"
+    },
+    {
+      "type": "fix",
+      "section": "🐛 Bug Fixes"
+    },
+    {
+      "type": "chore",
+      "section": "🧹 Chores"
+    },
+    {
+      "type": "docs",
+      "section": "📝 Documentation"
+    },
+    {
+      "type": "style",
+      "hidden": true
+    },
+    {
+      "type": "refactor",
+      "section": "🎨 Refactor"
+    },
+    {
+      "type": "perf",
+      "section": "⚡️ Performance"
+    },
+    {
+      "type": "test",
+      "section": "🧪 Test"
+    },
+    {
+      "type": "ci",
+      "section": "🤖 Continuous Integration"
+
+    },
+    {
+      "type": "revert",
+      "section": "🕰️ Revert"
+    }
+  ],
+  "commitUrlFormat": "https://bitbucket.tooling.dvla.gov.uk/projects/ETL/repos/lab-common-cdk-tools/commits/{{hash}}"
+}
