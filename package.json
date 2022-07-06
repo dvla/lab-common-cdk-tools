@@ -12,7 +12,6 @@
     "outdated": "npm run outdated --workspaces",
     "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",
-    "bootstrap-ci": "lerna bootstrap",
     "version": "lerna version --no-push",
     "publish": "lerna publish from-package --yes",
     "commit": "git-cz"

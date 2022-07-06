@@ -13,7 +13,6 @@ steps:
     commands:
       - npm config set unsafe-perm true
       - npm ci
-      - npm run bootstrap-ci
     environment:
       NPM_CONFIG_REGISTRY: https://nexus.tooling.dvla.gov.uk/repository/npm-group/
 
