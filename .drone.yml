@@ -77,3 +77,24 @@ steps:
       - test
     when:
       branch: [master]
+
+  - name: teams notify success
+    image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-notifier:latest
+    settings:
+      webhook:
+        from_secret: TEAMS_WEBHOOK
+    depends_on: ['publish']
+    when:
+      branch: [master]
+      status:
+        - success
+
+  - name: teams notify failure
+    image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-notifier:latest
+    settings:
+      webhook:
+        from_secret: TEAMS_WEBHOOK
+    depends_on: ['test']
+    when:
+      status:
+        - failure
