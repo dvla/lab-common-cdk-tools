@@ -72,6 +72,7 @@ steps:
     environment: &env-npm-nexus
       NPM_CONFIG_REGISTRY: https://nexus.tooling.dvla.gov.uk/repository/npm-group/
     commands:
+      - npm run release
       - npm run publish
     depends_on:
       - test
@@ -82,7 +83,7 @@ steps:
     image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-notifier:latest
     settings:
       webhook:
-        from_secret: TEAMS_WEBHOOK
+        from_secret: TEAMS_WEBHOOK # pragma: allowlist secret
     depends_on: ['publish']
     when:
       branch: [master]
@@ -93,7 +94,7 @@ steps:
     image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-notifier:latest
     settings:
       webhook:
-        from_secret: TEAMS_WEBHOOK
+        from_secret: TEAMS_WEBHOOK # pragma: allowlist secret
     depends_on: ['test']
     when:
       status:
