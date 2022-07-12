@@ -6,7 +6,34 @@ platform:
   os: linux
   arch: amd64
 
+common_cache_settings: &common_cache_settings
+  bucket: dvla-drone1-cache-714782054810
+  region: eu-west-2
+  encryption: AES256
+  endpoint: https://s3.eu-west-2.amazonaws.com
+
+restore_cache: &restore_cache
+  restore: true
+
+rebuild_cache: &rebuild_cache
+  rebuild: true
+
+npm_cache_settings: &npm_cache_settings
+  cache_key: '{{ checksum "package-lock.json" }}'
+  mount:
+    - 'node_modules'
+
 steps:
+  - name: secret scan
+    pull: if-not-exists
+    image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-secret-scan
+
+  - name: pull npm cache
+    image: ecr.tooling.dvla.gov.uk/ce/drone-cache
+    depends_on: ["secret scan"]
+    settings:
+      <<: [*common_cache_settings, *npm_cache_settings, *restore_cache]
+
   - name: install
     pull: if-not-exists
     image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.20
@@ -16,6 +43,12 @@ steps:
     environment:
       NPM_CONFIG_REGISTRY: https://nexus.tooling.dvla.gov.uk/repository/npm-group/
 
+  - name: push npm cache
+    image: ecr.tooling.dvla.gov.uk/ce/drone-cache
+    depends_on: ['install']
+    settings:
+      <<: [*common_cache_settings, *npm_cache_settings, *rebuild_cache]
+  
   - name: audit
     pull: if-not-exists
     image: *base--image
