@@ -1,6 +1,6 @@
 {
   "name": "@dvla/lab-constructs-cdk",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "DVLA Emerging Tech Lab common cdk constructs",
   "scripts": {
     "audit": "npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
