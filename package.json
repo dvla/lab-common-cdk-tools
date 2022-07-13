@@ -9,6 +9,7 @@
   "scripts": {
     "audit": "npm run audit --workspaces",
     "build": "npm run build --workspaces",
+    "outdatedRoot": "ncu --errorLevel 2 --color --packageFile ./package.json",
     "outdated": "npm run outdated --workspaces",
     "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",

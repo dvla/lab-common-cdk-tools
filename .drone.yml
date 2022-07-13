@@ -48,7 +48,7 @@ steps:
     depends_on: ['install']
     settings:
       <<: [*common_cache_settings, *npm_cache_settings, *rebuild_cache]
-  
+
   - name: audit
     pull: if-not-exists
     image: *base--image
@@ -79,6 +79,7 @@ steps:
     image: *base--image
     failure: ignore
     commands:
+     - npm run outdatedRoot
      - npm run outdated
     depends_on:
      - install

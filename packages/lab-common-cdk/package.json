@@ -21,8 +21,8 @@
     "moment": "2.29.4"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "2.31.1",
-    "constructs": "10.1.43"
+    "aws-cdk-lib": "~2.31.1",
+    "constructs": "~10.1.43"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
