@@ -5,6 +5,8 @@ import { Stack, aws_s3 as s3,
     aws_sns as sns, CfnOutput, aws_logs as logs, RemovalPolicy } from 'aws-cdk-lib';
 import * as lab from '@dvla/lab-common-cdk';
 import * as glue from '@aws-cdk/aws-glue-alpha';
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * Save incoming messages on a topic to a S3 bucket using Kinesis Firehose, queryable with Athena.
@@ -36,9 +38,11 @@ export class NotificationsDatastore extends Construct {
         this.topic = topic;
 
         // create a lambda for event processing
+        const lambdaFile = 'eventProcessor';
+        const extension = fs.existsSync(path.join(__dirname, lambdaFile + '.ts')) ? '.ts' : '.js';
         const eventProcessorLambda = lab.lambda.NodejsFunction(this, `${id}-EventProcessorLambda`, {
-            entry: `${__dirname}/eventProcessor.ts`,
-            functionName: `${stage}-${id}-eventProcessor`,
+            entry: path.join(__dirname, `${lambdaFile}${extension}`),
+            functionName: `${stage}-${id}-${lambdaFile}`,
         });
 
         // create the role and grant permission for kinesis to access the bucket.
