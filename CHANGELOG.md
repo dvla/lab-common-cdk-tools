@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.5.2...v2.5.3) (2022-07-15)
+
+
+### 🐛 Bug Fixes
+
+* ET-1163: bundle ts or js lambda within aws cdk construct ([8e7fb7a](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/8e7fb7aed086b9ccc73d80929907ad007678317b))
+
+
+
 ## [2.5.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.5.1...v2.5.2) (2022-07-15)
 
 
