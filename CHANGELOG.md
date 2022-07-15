@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.5.1...v2.5.2) (2022-07-15)
+
+
+### 🧹 Chores
+
+* **deps:** update all non-major dev dependencies ([50c4e66](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/50c4e669723ce14ffc5e0990b5a1f7565a5076ae))
+
+
+
 ## [2.5.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.5.0...v2.5.1) (2022-07-13)
 
 
