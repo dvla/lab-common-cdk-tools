@@ -101,6 +101,13 @@ steps:
     settings:
       template_dir: ./packages/lab-common-cdk/coverage/templates
 
+  - name: sonar scan
+    depends_on: ['Cloudformation Analysis', 'test']
+    image: 714782054810.dkr.ecr.eu-west-2.amazonaws.com/utilities-ci-tools/ci-drone-sonar-scanner
+    settings:
+      sonar_token:
+        from_secret: SONAR_TOKEN
+
   - name: publish
     image: *base--image
     environment: &env-npm-nexus
