@@ -13,8 +13,8 @@
     "update": "ncu -u"
   },
   "engines": {
-    "node": "^14.18.1",
-    "npm": "^8.2.0"
+    "node": ">=16",
+    "npm": ">=8"
   },
   "dependencies": {
     "lodash": "4.17.21",
