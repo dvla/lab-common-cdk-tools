@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.8.1...v2.8.2) (2022-08-19)
+
+
+### 🧹 Chores
+
+* **deps:** update dependency npm-check-updates to v16 ([12df64c](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/12df64c98035a6edbb49b2e4fc383bd66f6c769c))
+
+
+
 ## [2.8.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.7.1...v2.8.1) (2022-08-18)
 
 
