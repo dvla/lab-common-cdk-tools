@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.8.2...v2.9.1) (2022-08-24)
+
+
+### ✨ Features
+
+* ET-1137: Add sonar properties file ([49f5e28](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/49f5e28647b06c301aaac19e4f92e33948573053))
+
+
+### 🧹 Chores
+
+* **deps:** update aws cdk & constructs ([874c858](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/874c8584b6c317cf6f475705f889617cefbf3196))
+
+
+
 ## [2.8.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.8.1...v2.8.2) (2022-08-19)
 
 
