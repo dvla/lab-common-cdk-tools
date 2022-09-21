@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.11.1...v2.12.1) (2022-09-21)
+
+
+### 🧹 Chores
+
+* **deps:** update all non-major dev dependencies ([0f252cb](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/0f252cbff009c302bce2c2d3436e61de47f6c88e))
+* **deps:** update all non-major dev dependencies ([8416377](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/8416377f4f75bbe836ff8a67c8d66a57d753c389))
+* **deps:** update aws cdk & constructs ([a600d74](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/a600d74eda8df2762bd747560b19ef654b672cf6))
+
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency @types/aws-lambda to v8.10.104 ([6a80086](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/6a800864480a60c2ca198585bf3290b003be67d2))
+
+
+
 ## [2.11.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.10.1...v2.11.1) (2022-09-09)
 
 
