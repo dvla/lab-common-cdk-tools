@@ -1,7 +1,5 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "command": {
     "version": {
       "message": "chore(release): Increment new version %s (lerna)"
@@ -52,13 +50,11 @@
         "section": "🕰️ Revert"
       }
     ],
-    "issuePrefixes": [
-      "#"
-    ],
+    "issuePrefixes": ["#"],
     "issueUrlFormat": "{{host}}/{{owner}}/{{repository}}/issues/{{id}}",
     "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
     "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
     "userUrlFormat": "{{host}}/{{user}}"
   },
-  "version": "2.14.1"
+  "version": "2.15.1"
 }

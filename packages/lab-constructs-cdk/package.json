@@ -1,42 +1,42 @@
 {
-  "name": "@dvla/lab-constructs-cdk",
-  "version": "2.15.0",
-  "description": "DVLA Emerging Tech Lab common cdk constructs",
-  "scripts": {
-    "audit": "npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
-    "build": "tsc",
-    "cdk": "cdk",
-    "watch": "tsc -w",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.ts",
-    "outdated": "ncu --errorLevel 2 --color",
-    "update": "ncu -u"
-  },
-  "engines": {
-    "node": ">=16",
-    "npm": ">=8"
-  },
-  "dependencies": {
-    "@aws-lambda-powertools/logger": "1.0.1",
-    "@types/aws-lambda": "8.10.107",
-    "moment": "2.29.4"
-  },
-  "devDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.39.1-alpha.0",
-    "@dvla/lab-common-cdk": "^2.14.1"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "directories": {
-    "dist": "/dist",
-    "test": "/src/__tests__"
-  },
-  "files": [
-    "dist",
-    "!dist/__tests__/"
-  ],
-  "publishConfig": {
-    "registry": "https://nexus.tooling.dvla.gov.uk/repository/npm-private"
-  },
-  "license": "MIT"
+    "name": "@dvla/lab-constructs-cdk",
+    "version": "2.15.1",
+    "description": "DVLA Emerging Tech Lab common cdk constructs",
+    "scripts": {
+        "audit": "npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
+        "build": "tsc",
+        "cdk": "cdk",
+        "watch": "tsc -w",
+        "test": "jest",
+        "lint": "eslint . --ext .js,.ts",
+        "outdated": "ncu --errorLevel 2 --color",
+        "update": "ncu -u"
+    },
+    "engines": {
+        "node": ">=16",
+        "npm": ">=8"
+    },
+    "dependencies": {
+        "@aws-lambda-powertools/logger": "1.0.1",
+        "@types/aws-lambda": "8.10.107",
+        "moment": "2.29.4"
+    },
+    "devDependencies": {
+        "@aws-cdk/aws-glue-alpha": "2.39.1-alpha.0",
+        "@dvla/lab-common-cdk": "^2.14.1"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "directories": {
+        "dist": "/dist",
+        "test": "/src/__tests__"
+    },
+    "files": [
+        "dist",
+        "!dist/__tests__/"
+    ],
+    "publishConfig": {
+        "registry": "https://nexus.tooling.dvla.gov.uk/repository/npm-private"
+    },
+    "license": "MIT"
 }
