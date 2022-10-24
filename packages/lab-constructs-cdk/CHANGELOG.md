@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.16.1...v2.17.1) (2022-10-24)
+
+**Note:** Version bump only for package @dvla/lab-constructs-cdk
+
 ## [2.16.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.15.2...v2.16.1) (2022-10-20)
 
 **Note:** Version bump only for package @dvla/lab-constructs-cdk
