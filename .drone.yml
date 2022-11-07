@@ -116,7 +116,7 @@ steps:
     depends_on:
       - test
     when:
-      branch: [master]
+      branch: [main]
 
   - name: teams notify success
     image: ecr.tooling.dvla.gov.uk/utilities-ci-tools/ci-notifier:latest
@@ -125,7 +125,7 @@ steps:
         from_secret: TEAMS_WEBHOOK # pragma: allowlist secret
     depends_on: ['publish']
     when:
-      branch: [master]
+      branch: [main]
       status:
         - success
 
