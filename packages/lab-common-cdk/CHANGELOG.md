@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.3](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.17.2...v2.17.3) (2022-11-07)
+
+### 🐛 Bug Fixes
+
+-   **deps:** ET-865: Update package-lock ([5cad980](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/5cad980c14e70f742707b7c775bd364ba5d36ff4))
+
 ## [2.17.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.17.1...v2.17.2) (2022-11-07)
 
 ### 🧹 Chores
