@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.17.1...v2.17.2) (2022-11-07)
+
+### 🧹 Chores
+
+- **deps:** lock file maintenance ([f329451](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/f3294514cd34f7d570ddf72f10fc4946b4e6479c))
+- **deps:** lock file maintenance ([1e53984](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/1e539843dd6b575aec6620be26a2f7fcb79c55d7))
+- **deps:** update all non-major dev dependencies ([7b5d02f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/7b5d02fe76e8a663f97e5fd9bd5ae043286d936b))
+- **deps:** update all non-major dev dependencies ([6595dfc](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/6595dfca815a16654ef23b58d0406c0b792eccab))
+- **deps:** update aws cdk & constructs ([2d86e9f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/2d86e9feb54bf35cafe558058343b649ac6a1713))
+- **deps:** update dependency @types/node to v18 ([88e4a9e](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/88e4a9e8610bf11edab781a189a61ddb0eea6c75))
+
 ## [2.17.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.16.1...v2.17.1) (2022-10-24)
 
 **Note:** Version bump only for package root
