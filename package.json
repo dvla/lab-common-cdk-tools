@@ -37,7 +37,7 @@
     "constructs": "10.1.151",
     "conventional-changelog-conventionalcommits": "5.0.0",
     "commitizen": "4.2.5",
-    "esbuild": "0.15.15",
+    "esbuild": "0.15.16",
     "eslint": "8.28.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.5.0",
