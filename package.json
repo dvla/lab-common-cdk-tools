@@ -26,15 +26,15 @@
     }
   },
   "devDependencies": {
-    "@aws-cdk/assert": "2.50.0",
+    "@aws-cdk/assert": "2.53.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "7.4.2",
     "@types/jest": "29.2.3",
     "@types/lodash": "4.14.190",
     "@types/node": "18.11.9",
     "@typescript-eslint/eslint-plugin": "5.44.0",
     "@typescript-eslint/parser": "5.44.0",
-    "aws-cdk-lib": "2.50.0",
-    "constructs": "10.1.151",
+    "aws-cdk-lib": "2.53.0",
+    "constructs": "10.1.175",
     "conventional-changelog-conventionalcommits": "5.0.0",
     "commitizen": "4.2.5",
     "esbuild": "0.15.16",
