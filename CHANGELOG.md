@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.20.1...v2.20.2) (2022-12-01)
+
+### 🧹 Chores
+
+- **deps:** update aws cdk & constructs ([875b7b7](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/875b7b7649269ba27816ad6c0f763f56a318d9cf))
+- **deps:** update dependency esbuild to v0.15.16 ([64234eb](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/64234ebe1a1276e0f84f4be9dda4f95fb55d360e))
+
 ## [2.20.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.19.1...v2.20.1) (2022-11-28)
 
 ### 🐛 Bug Fixes
