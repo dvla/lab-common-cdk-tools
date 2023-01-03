@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.21.1...v2.22.1) (2023-01-03)
+
+### 🧹 Chores
+
+- **deps:** lock file maintenance ([ae67b0d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ae67b0d96cef90f24a4c7615f96bcbdba7d3987b))
+- **deps:** update all non-major dev dependencies ([51304f8](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/51304f803e40b6030e08a593c5c539816a4f33f8))
+- **deps:** update all non-major dev dependencies ([022f3e5](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/022f3e569e87f68aa1f8e2461c7d7e79b8dc73e9))
+- **deps:** update aws cdk & constructs ([4be4981](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/4be49810ee322c77429feff104c31db9989da404))
+- **deps:** update dependency @digitalroute/cz-conventional-changelog-for-jira to v8 ([dbce8ae](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/dbce8aec5035c5ec5f0189e146c522ed321c9f68))
+
 ## [2.21.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.20.2...v2.21.1) (2022-12-13)
 
 ### 🧹 Chores
