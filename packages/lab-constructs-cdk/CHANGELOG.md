@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.25.1...v2.26.0) (2023-01-27)
+
+### ✨ Features
+
+-   Update to latest CDK ([856f3e2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/856f3e2fc2bc3e3a1bdba258a178497f2ec3861b))
+
 ## [2.25.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.24.0...v2.25.1) (2023-01-16)
 
 ### 🐛 Bug Fixes
