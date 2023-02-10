@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.28.0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.27.1...v2.28.0) (2023-02-10)
+
+### 🧹 Chores
+
+- **deps:** lock file maintenance ([1251582](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/1251582717dcbaf577b14c06aae7aba5a8f60ede))
+- **deps:** update all non-major dev dependencies ([a351b6b](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/a351b6b88ca5b335f4c07ca21a679598998d8c35))
+- **deps:** update all non-major dev dependencies ([ff13e05](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ff13e05ec9b57888eeb16cf56602785570bcdd16))
+
+### ✨ Features
+
+- ET-1107: Added gitpod.yml ([7fbe0e9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/7fbe0e99be663ce3e1d0bc665a986ee4996cb345))
+- ET-1246: DevContainer ([654c9c9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/654c9c9eac0bae9d1011770cd5129241d3118360))
+- Update to latest CDK ([3ad9909](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/3ad99096338d31ca7d37205bd0a91077db1ae798))
+
 ## [2.27.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.26.0...v2.27.1) (2023-01-30)
 
 ### 🧹 Chores
