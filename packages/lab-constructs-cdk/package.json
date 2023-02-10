@@ -22,8 +22,8 @@
         "moment": "2.29.4"
     },
     "devDependencies": {
-        "@aws-cdk/aws-glue-alpha": "2.62.0-alpha.0",
-        "@dvla/lab-common-cdk": "^2.26.0"
+        "@aws-cdk/aws-glue-alpha": "2.64.0-alpha.0",
+        "@dvla/lab-common-cdk": "^2.27.0"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
