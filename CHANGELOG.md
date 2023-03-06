@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.30.2...v2.31.1) (2023-03-06)
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency @aws-lambda-powertools/logger to v1.6.0 ([24a7e85](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/24a7e8570add5e3ae92f9429d937c9afcbefee21))
+
 ## [2.30.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.30.1...v2.30.2) (2023-03-01)
 
 ### 🧹 Chores
