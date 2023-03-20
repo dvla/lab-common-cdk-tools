@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.32.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.31.1...v2.32.1) (2023-03-20)
+
+### 🧹 Chores
+
+- **deps:** lock file maintenance ([2c0394a](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/2c0394a922dd5c581b4ffb96a2e9a1bcb125b274))
+- **deps:** lock file maintenance ([fe3c5c6](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/fe3c5c67503a7432596534b58e2c48a50f3678c1))
+- **deps:** lock file maintenance ([56e7ecc](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/56e7ecc44eb8390d9929ceedc8e738eba73fd2be))
+- **deps:** update all non-major dev dependencies ([76b2481](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/76b2481e0461fcc602b50b7c78e54231bfcbba00))
+- **deps:** update dependency typescript to v5 ([88dd055](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/88dd055cb5bb812e6e0c3bf40fe151b36f32f230))
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency @types/aws-lambda to v8.10.114 ([fcfe31c](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/fcfe31c6644055fa0f81ed84a9d5e4c6375ec6c2))
+
 ## [2.31.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.30.2...v2.31.1) (2023-03-06)
 
 ### 🐛 Bug Fixes
