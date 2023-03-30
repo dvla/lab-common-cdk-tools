@@ -1,4 +1,4 @@
-import '@aws-cdk/assert/jest';
+import { Template } from 'aws-cdk-lib/assertions';
 import * as lab from '../..';
 import * as fs from 'fs';
 import { Construct } from 'constructs';
@@ -22,9 +22,10 @@ describe('Tests stack template copying functionality', () => {
         // Given
         const app = new App();
         const stack = new TestStack(app, 'MyCopyTemplateStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toCountResources('AWS::S3::Bucket', 1);
+        template.resourceCountIs('AWS::S3::Bucket', 1);
         lab.utils.copyStackTemplate(app, stack)
         expect(fs.existsSync(`coverage/templates/${stack.templateFile}`)).toBe(true)
     });
@@ -33,10 +34,11 @@ describe('Tests stack template copying functionality', () => {
         // Given
         const app = new App();
         const stack = new TestStack(app, 'MyCustomCopyTemplateStack');
+        const template = Template.fromStack(stack);
         const customTempDir = 'coverage/custom_temp_dir'
 
         // Then
-        expect(stack).toCountResources('AWS::S3::Bucket', 1);
+        template.resourceCountIs('AWS::S3::Bucket', 1);
         lab.utils.copyStackTemplate(app, stack, customTempDir)
         expect(fs.existsSync(`${customTempDir}/${stack.templateFile}`)).toBe(true)
     });
@@ -45,10 +47,11 @@ describe('Tests stack template copying functionality', () => {
         // Given
         const app = new App();
         const stack = new TestStack(app, 'MyCustomComplexCopyTemplateStack');
+        const template = Template.fromStack(stack);
         const customTempDir = 'coverage/dir1/dir2/custom_temp_dir'
 
         // Then
-        expect(stack).toCountResources('AWS::S3::Bucket', 1);
+        template.resourceCountIs('AWS::S3::Bucket', 1);
         lab.utils.copyStackTemplate(app, stack, customTempDir)
         expect(fs.existsSync(`${customTempDir}/${stack.templateFile}`)).toBe(true)
     });

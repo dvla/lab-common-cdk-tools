@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
-import '@aws-cdk/assert/jest';
+import { Template } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import { App, Stack, StackProps, Duration } from 'aws-cdk-lib';
 import moment from 'moment';
@@ -43,6 +43,7 @@ describe('Tests expires tag is assigned', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestStack');
+        const template = Template.fromStack(stack);
 
         let now = moment().minute(0);
         const addedHours = expires.toHours();
@@ -50,7 +51,7 @@ describe('Tests expires tag is assigned', () => {
         const expiresDate = now.format(lab.utils.EXPIRES_FORMAT);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
+        template.hasResourceProperties('AWS::S3::Bucket', {
             BucketName: 'mybuck-prod',
             Tags: [
                 {
@@ -77,6 +78,7 @@ describe('Tests expires tag is assigned', () => {
 
         // When
         const stack = new CustomTestStack(app, 'MyTestStack');
+        const template = Template.fromStack(stack);
 
         let now = moment().minute(0);
         const addedHours = expires.toHours();
@@ -84,7 +86,7 @@ describe('Tests expires tag is assigned', () => {
         const expiresDate = now.format(lab.utils.EXPIRES_FORMAT);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
+        template.hasResourceProperties('AWS::S3::Bucket', {
             BucketName: 'mybuck-prod',
             Tags: [
                 {

@@ -1,4 +1,3 @@
-import '@aws-cdk/assert/jest';
 import * as lab from '../..';
 import { CaseStyle } from '../../utils';
 

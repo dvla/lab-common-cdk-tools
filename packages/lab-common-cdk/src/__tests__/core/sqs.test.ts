@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file,@typescript-eslint/no-unsafe-assignment */
-import '@aws-cdk/assert/jest';
+import { Match, Template } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import {
     App,
@@ -105,10 +105,11 @@ describe('Tests Queue core functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestSQSStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toCountResources('AWS::SQS::Queue', 2);
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.resourceCountIs('AWS::SQS::Queue', 2);
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'sqstest-test-queue',
             DelaySeconds: 1,
             ReceiveMessageWaitTimeSeconds: 5,
@@ -116,25 +117,25 @@ describe('Tests Queue core functionality', () => {
             RedrivePolicy: {
                 maxReceiveCount: 3,
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-test-queue'
                 }
-            ]
+            ])
         });
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'sqstest-test-dl-queue',
             MessageRetentionPeriod: 1209600,
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-test-queue'
                 }
-            ]
+            ])
         });
 
-        expect(stack).toHaveResourceLike('AWS::CloudWatch::Alarm', {
+        template.hasResourceProperties('AWS::CloudWatch::Alarm', {
             AlarmName: 'sqstest-test-dl-queue-messages',
             MetricName: 'ApproximateNumberOfMessagesVisible'
         });
@@ -149,10 +150,11 @@ describe('Tests Queue core functionality', () => {
 
         // When
         const stack = new TestFifoStack(app, 'FiTestStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toCountResources('AWS::SQS::Queue', 2);
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.resourceCountIs('AWS::SQS::Queue', 2);
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'testing-testq-queue.fifo',
             DelaySeconds: 8,
             FifoQueue: true,
@@ -160,24 +162,24 @@ describe('Tests Queue core functionality', () => {
             RedrivePolicy: {
                 maxReceiveCount: 2,
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-test-queue'
                 }
-            ]
+            ])
         });
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'testing-testq-dl-queue.fifo',
             MessageRetentionPeriod: 1209600,
             FifoQueue: true,
             ContentBasedDeduplication: true,
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-test-queue'
                 }
-            ]
+            ])
         });
 
         lab.utils.copyStackTemplate(app, stack);
@@ -191,10 +193,11 @@ describe('Tests Queue core functionality', () => {
 
         // When
         const stack = new TestFifoPropsStack(app, 'FiFoTestStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toCountResources('AWS::SQS::Queue', 2);
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.resourceCountIs('AWS::SQS::Queue', 2);
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'testing-testfq-queue.fifo',
             DelaySeconds: 6,
             FifoQueue: true,
@@ -202,24 +205,24 @@ describe('Tests Queue core functionality', () => {
             RedrivePolicy: {
                 maxReceiveCount: 1,
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-t-queue'
                 }
-            ]
+            ])
         });
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'testing-testfq-dl-queue.fifo',
             MessageRetentionPeriod: 432000,
             FifoQueue: true,
             ContentBasedDeduplication: true,
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-t-queue'
                 }
-            ]
+            ])
         });
 
         lab.utils.copyStackTemplate(app, stack);
@@ -233,21 +236,22 @@ describe('Tests Queue core functionality', () => {
 
         // When
         const stack = new DLQTestStack(app, 'MyTestDLQSQSStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toCountResources('AWS::SQS::Queue', 1);
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.resourceCountIs('AWS::SQS::Queue', 1);
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'sqstest-test-dl-queue',
             MessageRetentionPeriod: 1209600,
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-test-queue'
                 }
-            ]
+            ])
         });
 
-        expect(stack).toHaveResourceLike('AWS::CloudWatch::Alarm', {
+        template.hasResourceProperties('AWS::CloudWatch::Alarm', {
             AlarmName: 'sqstest-test-dl-queue-messages',
             AlarmDescription: 'The dead letter queue is filling up with messages',
             MetricName: 'ApproximateNumberOfMessagesVisible',
@@ -264,21 +268,23 @@ describe('Tests Queue core functionality', () => {
 
         // When
         const stack = new WorkerStack(app, 'WorkingStack');
+        const template = Template.fromStack(stack);
+
         // Then
-        expect(stack).toCountResources('AWS::SQS::Queue', 2);
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.resourceCountIs('AWS::SQS::Queue', 2);
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'testing-lam-queue',
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'my-lamb-queue'
                 }
-            ]
+            ])
         });
-        expect(stack).toHaveResourceLike('AWS::SQS::Queue', {
+        template.hasResourceProperties('AWS::SQS::Queue', {
             QueueName: 'testing-lam-dl-queue',
         });
-        expect(stack).toHaveResourceLike('AWS::Lambda::EventSourceMapping', {
+        template.hasResourceProperties('AWS::Lambda::EventSourceMapping', {
             FunctionName: stack.resolve(stack.worker.functionName),
             EventSourceArn: stack.resolve(stack.queue.queueArn),
             BatchSize: 5

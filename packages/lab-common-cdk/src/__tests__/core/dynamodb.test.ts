@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
-import '@aws-cdk/assert/jest';
+import { Template } from 'aws-cdk-lib/assertions';
 import {
     App, Stack, StackProps,
     aws_dynamodb as dynamodb,
@@ -45,9 +45,10 @@ describe('Tests Basic dynamo table creation functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestDynamoStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::DynamoDB::Table', {
+        template.hasResourceProperties('AWS::DynamoDB::Table', {
             BillingMode: 'PAY_PER_REQUEST',
             PointInTimeRecoverySpecification: {
                 PointInTimeRecoveryEnabled : true
@@ -65,9 +66,10 @@ describe('Tests Basic dynamo table creation functionality', () => {
 
         // When
         const stack = new AdvancedStack(app, 'MyTestAdvancedDynamoStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::DynamoDB::Table', {
+        template.hasResourceProperties('AWS::DynamoDB::Table', {
             ProvisionedThroughput: {
                 'ReadCapacityUnits': 5,
                 'WriteCapacityUnits': 5

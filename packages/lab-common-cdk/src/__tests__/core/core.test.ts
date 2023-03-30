@@ -1,4 +1,4 @@
-import '@aws-cdk/assert/jest';
+import { Template, Match } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import { aws_iam as iam, App, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
@@ -29,11 +29,12 @@ describe('Tests root core functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestCoreStack');
+        const template = Template.fromStack(stack);
 
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
 
-        expect(stack).toHaveResourceLike('AWS::IAM::Role', {
+        template.hasResourceProperties('AWS::IAM::Role', {
             AssumeRolePolicyDocument : {
                 Statement: [
                     {
@@ -45,12 +46,12 @@ describe('Tests root core functionality', () => {
                     }
                 ],
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'dvla-emerging-tech'
                 }
-            ]
+            ])
         });
 
         lab.utils.copyStackTemplate(app, stack);

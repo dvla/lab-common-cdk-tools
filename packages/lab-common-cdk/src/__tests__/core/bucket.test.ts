@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
-import '@aws-cdk/assert/jest';
+import { Template, Match } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import { aws_s3 as s3, App, Stack, StackProps, Duration } from 'aws-cdk-lib';
 
@@ -58,9 +58,10 @@ describe('Tests bucket core functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestBucketStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
+        template.hasResourceProperties('AWS::S3::Bucket', {
             BucketName: 'mybuck-prod',
             BucketEncryption: {
                 ServerSideEncryptionConfiguration: [
@@ -74,12 +75,12 @@ describe('Tests bucket core functionality', () => {
             LifecycleConfiguration: {
                 Rules: [{ ExpirationInDays: 14, Status: 'Enabled' }]
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'buckets'
                 }
-            ]
+            ])
         }
         );
 
@@ -94,9 +95,10 @@ describe('Tests bucket core functionality', () => {
 
         // When
         const stack = new AdvancedTestStack(app, 'MyAdvancedBucketStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
+        template.hasResourceProperties('AWS::S3::Bucket', {
             BucketName: 'thebuck-not-prod',
             CorsConfiguration: {
                 CorsRules: [{
@@ -109,12 +111,12 @@ describe('Tests bucket core functionality', () => {
             LifecycleConfiguration: {
                 Rules: [{ ExpirationInDays: 14, Status: 'Enabled' }]
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'bucketz'
                 }
-            ]
+            ])
         }
         );
         lab.utils.copyStackTemplate(app, stack);
@@ -126,9 +128,10 @@ describe('Tests bucket core functionality', () => {
 
         // When
         const stack = new CustomTestStack(app, 'MyCustomBucketStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::S3::Bucket', {
+        template.hasResourceProperties('AWS::S3::Bucket', {
             BucketName: 'my-custom-bucket',
             LifecycleConfiguration: {
                 Rules: [{ ExpirationInDays: 30, Status: 'Enabled' }]
@@ -142,12 +145,12 @@ describe('Tests bucket core functionality', () => {
                     }
                 ]
             },
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'dvla-emerging-tech'
                 }
-            ]
+            ])
         }
         );
         lab.utils.copyStackTemplate(app, stack);

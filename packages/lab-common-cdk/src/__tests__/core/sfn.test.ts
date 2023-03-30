@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
-import '@aws-cdk/assert/jest';
+import { Template, Match } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import {
     aws_stepfunctions as sfn,
@@ -65,22 +65,23 @@ describe('Tests State Machine core functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestSfnStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::StepFunctions::StateMachine', {
+        template.hasResourceProperties('AWS::StepFunctions::StateMachine', {
             LoggingConfiguration: {
                 Level: 'ERROR'
             },
             StateMachineType: 'STANDARD',
             DefinitionString:'{"StartAt":"StartS","States":{"StartS":{"Type":"Pass","End":true}},"TimeoutSeconds":300}',
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'steps'
                 }
-            ]
+            ])
         });
-        expect(stack).toHaveResourceLike('AWS::Logs::LogGroup', {
+        template.hasResourceProperties('AWS::Logs::LogGroup', {
             RetentionInDays: 7
         });
 
@@ -95,9 +96,10 @@ describe('Tests State Machine core functionality', () => {
 
         // When
         const stack = new AdvancedTestStack(app, 'MyTestAdvancedSfnStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::StepFunctions::StateMachine', {
+        template.hasResourceProperties('AWS::StepFunctions::StateMachine', {
             LoggingConfiguration: {
                 Level: 'ERROR'
             },
@@ -105,7 +107,7 @@ describe('Tests State Machine core functionality', () => {
             DefinitionString: '{"StartAt":"PassS","States":{"PassS":{"Type":"Pass","End":true}},"TimeoutSeconds":3600}'
         });
 
-        expect(stack).toHaveResourceLike('AWS::Logs::LogGroup', {
+        template.hasResourceProperties('AWS::Logs::LogGroup', {
             RetentionInDays: 30,
             LogGroupName: 'my/logs',
         });

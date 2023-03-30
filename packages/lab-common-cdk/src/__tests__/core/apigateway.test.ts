@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
-import '@aws-cdk/assert/jest';
+import { Template } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import {
     App,
@@ -58,18 +58,19 @@ describe('Tests API Gateway RestAPI core functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyAPIGatewayTestStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::ApiGateway::RestApi', {
+        template.hasResourceProperties('AWS::ApiGateway::RestApi', {
             Name: 'testing-test-restapi'
         });
 
-        expect(stack).toHaveResourceLike('AWS::ApiGateway::Method', {
+        template.hasResourceProperties('AWS::ApiGateway::Method', {
             HttpMethod: 'GET',
             AuthorizationType: 'NONE'
         });
 
-        expect(stack).toHaveResourceLike('AWS::ApiGateway::Stage', {
+        template.hasResourceProperties('AWS::ApiGateway::Stage', {
             StageName: 'testing',
             TracingEnabled: true,
             MethodSettings: [
@@ -94,13 +95,14 @@ describe('Tests API Gateway RestAPI core functionality', () => {
 
         // When
         const stack = new AdvancedTestStack(app, 'MyAdvAPIGatewayTestStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::ApiGateway::RestApi', {
+        template.hasResourceProperties('AWS::ApiGateway::RestApi', {
             Name: 'atest-restapi'
         });
 
-        expect(stack).toHaveResourceLike('AWS::ApiGateway::Stage', {
+        template.hasResourceProperties('AWS::ApiGateway::Stage', {
             StageName: 'prod',
             TracingEnabled: true,
             Description : 'Advanced API'

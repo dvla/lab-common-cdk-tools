@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,max-classes-per-file */
-import '@aws-cdk/assert/jest';
+import { Match, Template } from 'aws-cdk-lib/assertions';
 import { Construct } from 'constructs';
 import { App, aws_lambda as lambda, aws_logs as logs, Duration, Stack, StackProps } from 'aws-cdk-lib';
 import * as lab from '../..';
@@ -71,19 +71,20 @@ describe('Tests NodeJs lambda core functionality', () => {
 
         // When
         const stack = new TestStack(app, 'MyTestNodeJSStack');
+        const template = Template.fromStack(stack);
 
         // Then
         expect(lab.utils.getStage(app)).toBe('basicstack');
-        expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
+        template.hasResourceProperties('AWS::Lambda::Function', {
             Handler: 'index.handler',
             MemorySize: 128,
             Runtime: 'nodejs14.x',
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'dvla-emerging-tech'
                 }
-            ]
+            ])
         }
         );
     });
@@ -97,26 +98,27 @@ describe('Tests NodeJs lambda core functionality', () => {
 
         // When
         const stack = new AdvancedTestStack(app, 'MyAdvancedTestNodeJSStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
+        template.hasResourceProperties('AWS::Lambda::Function', {
             FunctionName: 'nice-func',
-            Handler: 'index.my.handle',
+            Handler: 'my.handle',
             MemorySize: 256,
             Runtime: 'nodejs14.x',
             Timeout: 30,
             Architectures: [
                 'arm64'
             ],
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'nicer'
                 }
-            ]
+            ])
         });
 
-        expect(stack).toHaveResourceLike('Custom::LogRetention', {
+        template.hasResourceProperties('Custom::LogRetention', {
             RetentionInDays: 7
         });
 
@@ -132,18 +134,19 @@ describe('Tests NodeJs lambda core functionality', () => {
 
         // When
         const stack = new CustomBundledTestStack(app, 'MyBundledTestNodeJSStack');
+        const template = Template.fromStack(stack);
 
         // Then
-        expect(stack).toHaveResourceLike('AWS::Lambda::Function', {
-            Handler: 'index.my.handle',
+        template.hasResourceProperties('AWS::Lambda::Function', {
+            Handler: 'my.handle',
             MemorySize: 128,
             Runtime: 'nodejs14.x',
-            Tags: [
+            Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
                     Value: 'dvla-emerging-tech'
                 }
-            ]
+            ])
         }
         );
         lab.utils.copyStackTemplate(app, stack);

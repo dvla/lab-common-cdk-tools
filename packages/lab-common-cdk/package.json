@@ -21,8 +21,8 @@
         "moment": "2.29.4"
     },
     "peerDependencies": {
-        "aws-cdk-lib": "~2.62.0 || ~2.63.0 || ~2.64.0 || ~2.65.0 || ~2.66.0",
-        "constructs": "~10.1.246"
+        "aws-cdk-lib": " ~2.66.0 || ~2.70.0",
+        "constructs": "~10.1.263"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
