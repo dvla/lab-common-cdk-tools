@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.36.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.35.1...v2.36.1) (2023-04-20)
+
+**Note:** Version bump only for package root
+
 ## [2.35.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.34.1...v2.35.1) (2023-04-11)
 
 ### 🐛 Bug Fixes
