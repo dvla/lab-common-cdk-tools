@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.38.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.37.1...v2.38.1) (2023-05-10)
+
+### 🐛 Bug Fixes
+
+-   **deps:** update dependency @types/aws-lambda to v8.10.115 ([010986d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/010986df900504e6e9ecd0bb0a4a464ee2ec5681))
+
 ## [2.37.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.36.1...v2.37.1) (2023-05-02)
 
 **Note:** Version bump only for package @dvla/lab-constructs-cdk
