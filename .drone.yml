@@ -36,9 +36,8 @@ steps:
 
   - name: install
     pull: if-not-exists
-    image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.21
+    image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.23
     commands:
-      - npm config set unsafe-perm true
       - npm ci
 
   - name: push npm cache
@@ -102,9 +101,6 @@ steps:
   - name: sonar scan
     depends_on: ['Cloudformation Analysis', 'test']
     image: 714782054810.dkr.ecr.eu-west-2.amazonaws.com/utilities-ci-tools/ci-drone-sonar-scanner
-    settings:
-      sonar_token:
-        from_secret: SONAR_TOKEN  # pragma: allowlist secret
 
   - name: publish
     image: *base--image

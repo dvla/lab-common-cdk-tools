@@ -12,7 +12,7 @@ import { MergeAware, StageAware } from './defaults';
 import { getStageAwareName, mergeProperties, nagSuppress } from '../utils';
 
 export const LAMBDA_DEFAULTS = {
-    runtime: lambda.Runtime.NODEJS_12_X,
+    runtime: lambda.Runtime.NODEJS_18_X,
     handler: 'index.handler',
     memorySize: 128,
     timeout: Duration.seconds(30),
@@ -23,7 +23,7 @@ export const LAMBDA_DEFAULTS = {
 
 export const LAMBDA_NODEJS_DEFAULTS = {
     architecture: lambda.Architecture.ARM_64,
-    runtime: lambda.Runtime.NODEJS_14_X,
+    runtime: lambda.Runtime.NODEJS_18_X,
     handler: 'handler',
     memorySize: 128,
     timeout: Duration.seconds(30),

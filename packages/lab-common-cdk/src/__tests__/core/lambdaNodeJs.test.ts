@@ -78,7 +78,7 @@ describe('Tests NodeJs lambda core functionality', () => {
         template.hasResourceProperties('AWS::Lambda::Function', {
             Handler: 'index.handler',
             MemorySize: 128,
-            Runtime: 'nodejs14.x',
+            Runtime: 'nodejs18.x',
             Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
@@ -105,7 +105,7 @@ describe('Tests NodeJs lambda core functionality', () => {
             FunctionName: 'nice-func',
             Handler: 'my.handle',
             MemorySize: 256,
-            Runtime: 'nodejs14.x',
+            Runtime: 'nodejs18.x',
             Timeout: 30,
             Architectures: [
                 'arm64'
@@ -140,7 +140,7 @@ describe('Tests NodeJs lambda core functionality', () => {
         template.hasResourceProperties('AWS::Lambda::Function', {
             Handler: 'my.handle',
             MemorySize: 128,
-            Runtime: 'nodejs14.x',
+            Runtime: 'nodejs18.x',
             Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',

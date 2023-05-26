@@ -7,18 +7,18 @@ describe('Tests Merging strategies', () => {
     test('Tests basics', () => {
         let result = lab.utils.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {});
         expect(result).toMatchObject( {
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
             tracing: lambda.Tracing.ACTIVE,
             logRetention: logs.RetentionDays.ONE_WEEK,
         });
         result = lab.utils.mergeProperties(lab.lambda.LAMBDA_DEFAULTS, {
-            runtime: lambda.Runtime.NODEJS_14_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
             memorySize: 256,
             functionName: 'testFunc',
             tracing: lambda.Tracing.DISABLED,
         });
         expect(result).toMatchObject( {
-            runtime: lambda.Runtime.NODEJS_14_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
             memorySize: 256,
             functionName: 'testFunc',
             tracing: lambda.Tracing.DISABLED,
@@ -31,7 +31,7 @@ describe('Tests Merging strategies', () => {
             logRetentionRetryOptions : { maxRetries : 3 }
         });
         expect(result).toMatchObject( {
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
             logRetentionRetryOptions : { maxRetries : 3 }
         });
         // Pass in the result of the previous merge, so its now a 3 way merge.
@@ -39,7 +39,7 @@ describe('Tests Merging strategies', () => {
             logRetentionRetryOptions : { maxRetries : 5 }
         });
         expect(result).toMatchObject( {
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
             logRetentionRetryOptions : { maxRetries : 5 }
         });
     });

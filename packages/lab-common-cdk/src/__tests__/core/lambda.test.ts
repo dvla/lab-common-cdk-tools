@@ -32,7 +32,7 @@ class AdvancedTestStack extends Stack {
                 handler: 'index.specialFunc',
                 memorySize: 256,
                 code: lambda.Code.fromAsset('src/__tests__/fixtures/test-func'),
-                runtime: lambda.Runtime.NODEJS_14_X,
+                runtime: lambda.Runtime.NODEJS_18_X,
                 logRetention: logs.RetentionDays.ONE_YEAR,
             },
             { useStage: false },
@@ -70,7 +70,7 @@ describe('Tests lambda core functionality', () => {
             FunctionName: 'basicstack-test-func',
             Handler: 'index.handler',
             MemorySize: 128,
-            Runtime: 'nodejs12.x',
+            Runtime: 'nodejs18.x',
             Tags: Match.arrayWith([
                 {
                     Key: 'lab_project',
@@ -113,7 +113,7 @@ describe('Tests lambda core functionality', () => {
             FunctionName: 'test-func',
             Handler: 'index.specialFunc',
             MemorySize: 256,
-            Runtime: 'nodejs14.x',
+            Runtime: 'nodejs18.x',
         });
 
         template.hasResourceProperties('Custom::LogRetention', {

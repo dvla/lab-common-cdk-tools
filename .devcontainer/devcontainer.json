@@ -3,7 +3,7 @@
 	//Devcontainer including Node.js, eslint, nvm, yarn, and the TypeScript compiler.
 	"name": "CDK-Devcontainer",
 	// Or use Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-16", //Image: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-18", //Image: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 
 	"hostRequirements": {
 		"cpus": 2 //2 are normally recommended on a container as a minimum, can make these larger if needed

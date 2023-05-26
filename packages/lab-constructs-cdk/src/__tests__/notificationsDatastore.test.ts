@@ -87,7 +87,7 @@ describe('Tests notifications core functionality', () => {
         Template.fromStack(stack).hasResourceProperties('AWS::Lambda::Function', {
             FunctionName: 'basicstack-notifications-untaxed-eventProcessor',
             Handler: 'index.handler',
-            Runtime: 'nodejs14.x',
+            Runtime: 'nodejs18.x',
             Tags: Match.arrayWith([{
                 Key: 'lab_project',
                 Value: 'con-test'
