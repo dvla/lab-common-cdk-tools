@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.40.1...v2.40.2) (2023-06-02)
+
+### 🧹 Chores
+
+- **deps:** ET:1350: updated node engine ([fd26259](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/fd26259205ce394114e26bbf74e1b8f782c94f9f))
+
 ## [2.40.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.39.1...v2.40.1) (2023-06-01)
 
 ### 🐛 Bug Fixes
