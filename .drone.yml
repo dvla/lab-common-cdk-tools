@@ -38,6 +38,7 @@ steps:
     pull: if-not-exists
     image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.23
     commands:
+      - node -v
       - npm ci
 
   - name: push npm cache
