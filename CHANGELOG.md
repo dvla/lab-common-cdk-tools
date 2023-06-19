@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.42.1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.41.3...v2.42.1) (2023-06-19)
+
+### 🐛 Bug Fixes
+
+- Add package-lock.json ([853683f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/853683fe9d562bed89223143768afedc517aa160))
+
+### 🤖 Continuous Integration
+
+- Update lerna to v7 ([aae2564](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/aae25646c1f346fad998b76668a6a67cd4cf737e))
+
 ## [2.41.3](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.41.2...v2.41.3) (2023-06-13)
 
 ### 🧹 Chores
