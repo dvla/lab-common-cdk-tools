@@ -1,6 +1,6 @@
 {
     "name": "@dvla/lab-common-cdk",
-    "version": "2.41.1",
+    "version": "2.42.2",
     "description": "DVLA Emerging Tech Lab common cdk utilities",
     "scripts": {
         "audit": "npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
