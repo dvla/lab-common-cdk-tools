@@ -101,7 +101,7 @@ describe('Test calling the handler', () => {
         expect(result.records[0].data).toBeDefined()
 
         const data = JSON.parse(
-            Buffer.from(result.records[0].data, 'base64').toString('utf8')
+            Buffer.from(result.records[0].data as string, 'base64').toString('utf8')
         ) as ExtendedMessage;
         expect(data.Type).toEqual('Notification');
         expect(data.Subject).toEqual('example subject');
