@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.4...v2.43.9) (2023-10-11)
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency @aws-lambda-powertools/logger to v1.13.0 ([01f9672](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/01f96725a10a09b4f2e7796f4839e35b5bc0d9ba))
+- **deps:** update dependency @aws-lambda-powertools/logger to v1.13.1 ([cadb19d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/cadb19d98217c54261c60ce62c6fa85f84dfeef0))
+- **deps:** update dependency @aws-lambda-powertools/logger to v1.14.0 ([15c97fd](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/15c97fd44855fbc54c0964195c191934421bf81b))
+- ET-1423: Changed test code to fix AWS Lambda update issue ([b47ccc4](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/b47ccc4c25630928a3286ab2c956515926f924d5))
+- ET-1423: Sync package-lock to try and fix failing bot build ([ff91cd5](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ff91cd59dba1d5c5f172d8396bdcd70a67b36402))
+
+### 🧹 Chores
+
+- **deps:** update all major dev dependencies (major) ([f91856d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/f91856d176d6f6375be40686b08a59a6021b82e0))
+- **deps:** update all non-major updates ([7c2f8e1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/7c2f8e1fe71a1313aff8c31c866cf845eecf3cff))
+- **deps:** update all non-major updates ([ba209b1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ba209b137129ae5ec5f801a98aaabf0219357c59))
+- **deps:** update all non-major updates ([25af056](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/25af056c056dab7e01be4707a2b61c5601366616))
+- **deps:** update all non-major updates ([05bd2f4](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/05bd2f4855cdb364611648a965fbff3e27a040d1))
+- **deps:** update all non-major updates to v6.7.2 ([7f3fc3c](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/7f3fc3ceb60509446ac4952d4e09e167c6515c85))
+- **deps:** update dependency @types/node to v20.6.3 ([ec27985](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ec279858630a2a4853792a72a7ac71200613b585))
+- **deps:** update dependency lerna to v7.3.1 ([e83969a](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/e83969a55bd8d929b2d510d08e665d9f08bd451e))
+- **deps:** update dependency npm-check-updates to v16.14.5 ([e7f1a8d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/e7f1a8d8082fcea9d565f4e9a3e45a1b28e556b8))
+
 ## [2.43.4](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.2...v2.43.4) (2023-09-12)
 
 ### 🐛 Bug Fixes
