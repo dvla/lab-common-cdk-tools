@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.11](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.9...v2.43.11) (2023-11-01)
+
+### 🐛 Bug Fixes
+
+-   ET-1423: Updated package lock to try and fix bot build issues ([66aa9c1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/66aa9c1671f23ce66e0cfe8ee275687987dab848))
+
 ## [2.43.9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.4...v2.43.9) (2023-10-11)
 
 ### 🐛 Bug Fixes

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.11](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.9...v2.43.11) (2023-11-01)
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency @types/aws-lambda to v8.10.125 ([0e69848](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/0e69848d856e22db006adb259dc98844b6b01a76))
+- ET-1423: Updated package lock to try and fix bot build issues ([66aa9c1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/66aa9c1671f23ce66e0cfe8ee275687987dab848))
+
+### 🧹 Chores
+
+- **deps:** update all non-major updates ([05a0037](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/05a0037767fb846e8f45d1e43e99c3647e2bef8d))
+- **deps:** update all non-major updates ([e284e0d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/e284e0d9af6f1010ecb900f2dbef6988caf85c05))
+- **deps:** update all non-major updates ([8b4987d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/8b4987d17fc956f2929c2eb31e5e152cb542cf02))
+- **deps:** update all non-major updates ([34e5922](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/34e5922b8eca952a201e5bf060d1376f8d2aacd3))
+- **deps:** update all non-major updates ([79d0602](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/79d0602a068a17db8fdf00479b5049e0cff707b1))
+- **deps:** update all non-major updates ([127ba30](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/127ba30ae50155e7f989f53a825d5ec3d391cb42))
+- **deps:** update all non-major updates to v6.8.0 ([0b23b60](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/0b23b60559008c39f91898e45ad0167802269b0d))
+- **deps:** update dependency @types/node to v20.8.6 ([777d4b0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/777d4b02ed9111aa648b72054c0238f517ad1e22))
+- **deps:** update dependency eslint-plugin-import to v2.29.0 ([351ebfb](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/351ebfbd2cf4c28b9dd806bc7d346f058dc89c7a))
+
 ## [2.43.9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.4...v2.43.9) (2023-10-11)
 
 ### 🐛 Bug Fixes
