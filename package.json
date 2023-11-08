@@ -27,9 +27,9 @@
   },
   "devDependencies": {
     "@digitalroute/cz-conventional-changelog-for-jira": "8.0.1",
-    "@types/jest": "29.5.7",
-    "@types/lodash": "4.14.200",
-    "@types/node": "20.8.10",
+    "@types/jest": "29.5.8",
+    "@types/lodash": "4.14.201",
+    "@types/node": "20.9.0",
     "@typescript-eslint/eslint-plugin": "6.10.0",
     "@typescript-eslint/parser": "6.10.0",
     "aws-cdk-lib": "2.103.1",
