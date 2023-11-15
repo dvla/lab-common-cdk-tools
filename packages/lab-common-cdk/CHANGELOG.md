@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.18](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.17...v2.43.18) (2023-11-15)
+
+### 🐛 Bug Fixes
+
+-   ET-1423: update peer dependencies and dev dependencies versions in package.json files ([b5b6d0b](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/b5b6d0bc421e79d28ab09ac2698cc7013a0c8226))
+
 ## [2.43.13](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.11...v2.43.13) (2023-11-02)
 
 ### 🧹 Chores
