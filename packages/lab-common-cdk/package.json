@@ -1,6 +1,6 @@
 {
     "name": "@dvla/lab-common-cdk",
-    "version": "2.43.13",
+    "version": "2.43.14",
     "description": "DVLA Emerging Tech Lab common cdk utilities",
     "scripts": {
         "audit": "npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
@@ -21,8 +21,11 @@
         "moment": "2.29.4"
     },
     "peerDependencies": {
-        "aws-cdk-lib": "~2.99.0 || ~2.100.0 || ~2.102.0 || ~2.103.0",
-        "constructs": "~10.2.31 || ~10.3.0"
+        "aws-cdk-lib": "^2.108.1",
+        "constructs": "^10.3.0"
+    },
+    "devDependencies": {
+      "aws-cdk-lib": "2.108.1"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
