@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.26](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.24...v2.43.26) (2023-12-01)
+
+### 🧹 Chores
+
+- **deps:** lock file maintenance ([bcb58ad](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/bcb58adb64029d8645a1a683d398ab023388c94c))
+- **deps:** update all non-major updates to v6.13.0 ([f4a9e9a](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/f4a9e9a69de129b53a39031c8eb4bc005a82904a))
+- **deps:** update all non-major updates to v6.13.1 ([e875eee](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/e875eee3f4907a87aca585d8779e5e68f43610a6))
+- **deps:** update dependency aws-cdk-lib to v2.111.0 ([c4b672e](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/c4b672ed149718b1d1ab5bbc8bc4a60666bf846a))
+
 ## [2.43.24](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.22...v2.43.24) (2023-11-27)
 
 ### 🐛 Bug Fixes
