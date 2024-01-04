@@ -1,6 +1,6 @@
 {
     "name": "@dvla/lab-constructs-cdk",
-    "version": "2.43.34",
+    "version": "2.43.35",
     "description": "DVLA Emerging Tech Lab common cdk constructs",
     "scripts": {
         "audit": "npm audit --registry=https://registry.npmjs.org --audit-level=moderate",
@@ -19,7 +19,7 @@
     "dependencies": {
         "@aws-lambda-powertools/logger": "1.17.0",
         "@types/aws-lambda": "8.10.130",
-        "moment": "2.29.4"
+        "moment": "2.30.1"
     },
     "devDependencies": {
         "@aws-cdk/aws-glue-alpha": "2.108.1-alpha.0",
