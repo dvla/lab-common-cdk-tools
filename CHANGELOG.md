@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.36](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.34...v2.43.36) (2024-01-04)
+
+### 🧹 Chores
+
+- **deps:** update all non-major updates ([484a8cc](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/484a8cc90541133015f14490094f33b6b94afe9f))
+
 ## [2.43.34](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.43.32...v2.43.34) (2024-01-03)
 
 ### 🧹 Chores
