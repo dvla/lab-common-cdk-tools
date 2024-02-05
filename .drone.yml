@@ -37,6 +37,8 @@ steps:
   - name: install
     pull: if-not-exists
     image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.23
+    environment:
+      NPM_CONFIG_REGISTRY: https://npm.tooling.dvla.gov.uk/npm/npm-group/
     commands:
       - node -v
       - npm ci
@@ -105,8 +107,8 @@ steps:
 
   - name: publish
     image: *base--image
-    environment: &env-npm-nexus
-      NPM_CONFIG_REGISTRY: https://nexus.tooling.dvla.gov.uk/repository/npm-group/
+    environment: &env-npm-dvla
+      NPM_CONFIG_REGISTRY: https://npm.tooling.dvla.gov.uk/npm/npm-group
     commands:
       - npm run release
       - npm run publish

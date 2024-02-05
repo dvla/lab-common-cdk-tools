@@ -38,7 +38,7 @@
         "!dist/__tests__/"
     ],
     "publishConfig": {
-        "registry": "https://nexus.tooling.dvla.gov.uk/repository/npm-private"
+        "registry": "https://tooling-448934085854.d.codeartifact.eu-west-2.amazonaws.com/npm/npm-private/"
     },
     "license": "MIT"
 }
