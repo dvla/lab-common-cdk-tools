@@ -17,7 +17,7 @@
         "npm": ">=8"
     },
     "dependencies": {
-        "@aws-lambda-powertools/logger": "1.18.0",
+        "@aws-lambda-powertools/logger": "1.18.1",
         "@types/aws-lambda": "8.10.134",
         "moment": "2.30.1"
     },
