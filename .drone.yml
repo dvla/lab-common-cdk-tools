@@ -110,6 +110,7 @@ steps:
     environment: &env-npm-dvla
       NPM_CONFIG_REGISTRY: https://npm.tooling.dvla.gov.uk/npm/npm-group
     commands:
+      - aws codeartifact login --tool npm --repository npm-private --domain tooling --domain-owner 448934085854 --region eu-west-2
       - npm run release
       - npm run publish
     depends_on:
