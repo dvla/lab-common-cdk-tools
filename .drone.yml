@@ -36,7 +36,7 @@ steps:
 
   - name: install
     pull: if-not-exists
-    image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:0.0.23
+    image: &base--image ecr.tooling.dvla.gov.uk/base-images/serverless:20.0.0-npm10
     environment:
       NPM_CONFIG_REGISTRY: https://npm.tooling.dvla.gov.uk/npm/npm-group/
     commands:
