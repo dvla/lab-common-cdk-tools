@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.44.18](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.44.16...v2.44.18) (2024-05-02)
+
+### 🧹 Chores
+
+- **deps:** update all non-major updates to v7.7.1 ([53cd1ae](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/53cd1ae9802e34486598e3b3f76fce69d90ac277))
+- **deps:** update dependency aws-cdk-lib to v2.139.1 ([980942c](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/980942c314cb48ec58fda71e2abaf97ac1b7981e))
+- **deps:** update dependency npm-check-updates to v16.14.20 ([9885c11](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/9885c1182dac7c0ff763a975331ac44a42202a36))
+
 ## [2.44.16](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.44.14...v2.44.16) (2024-04-22)
 
 ### 🧹 Chores
