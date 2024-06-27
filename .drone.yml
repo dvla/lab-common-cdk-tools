@@ -103,7 +103,7 @@ steps:
 
   - name: sonar scan
     depends_on: ['Cloudformation Analysis', 'test']
-    image: 714782054810.dkr.ecr.eu-west-2.amazonaws.com/utilities-ci-tools/ci-drone-sonar-scanner
+    image: 448934085854.dkr.ecr.eu-west-2.amazonaws.com/utilities-ci-tools/ci-drone-sonar-scanner
 
   - name: publish
     image: *base--image
