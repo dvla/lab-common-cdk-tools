@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.45.0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.44.20...v2.45.0) (2024-11-04)
+
+### ✨ Features
+
+-   ET-1593 Fix eslint build issues ([0e8b834](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/0e8b834812ace66f44d6ecf4430f6b6dc2d39403))
+
+### 🐛 Bug Fixes
+
+-   update aws-cdk-lib ([4d0954c](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/4d0954ce5a8b006d97fe550aa0c1bc94c1e66130))
+
+### 🧹 Chores
+
+-   **deps:** update dependency aws-cdk-lib to v2.144.0 ([be546a9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/be546a9c323c565e30e480ff8c56c6f8d808014d))
+-   **deps:** update dependency aws-cdk-lib to v2.148.0 ([595b4da](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/595b4da0f1fcfaa8a374d00e61eeed2c881a6e47))
+-   **deps:** update dependency aws-cdk-lib to v2.150.0 ([c9e79e5](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/c9e79e5d7e0559cd503f82d1740b02c093fc8c0b))
+-   **deps:** update dependency aws-cdk-lib to v2.151.0 ([1966036](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/1966036ad8e7ef7400da9c2abea188557777dfa8))
+-   **deps:** update dependency aws-cdk-lib to v2.154.0 ([ca3d398](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ca3d3989f32dfc3e11d80a16ab6d2e457cee1a53))
+-   **deps:** update dependency aws-cdk-lib to v2.156.0 ([5c14e2f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/5c14e2ff6632aa4dd8b469d84d5dd8c52854721e))
+-   **deps:** update dependency aws-cdk-lib to v2.160.0 ([2a1e1ab](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/2a1e1abd739495be2c3518e1fd2d758d9023c954))
+
 ## [2.44.18](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.44.16...v2.44.18) (2024-05-02)
 
 ### 🧹 Chores

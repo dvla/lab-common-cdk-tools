@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.45.0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.44.20...v2.45.0) (2024-11-04)
+
+### ✨ Features
+
+- ET-1593 Fix eslint build issues ([0e8b834](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/0e8b834812ace66f44d6ecf4430f6b6dc2d39403))
+- ET-1593: Fix eslint build issues ([b4156c6](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/b4156c624c549486e0e391e56cf5b593b74f8934))
+- update major dev dependencies ([036f1e1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/036f1e10d4450b5d0aba55d48d7aa4f60d47499a))
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency @types/aws-lambda to v8.10.140 ([437aafa](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/437aafad4f58009118a439138c1ad8c844c25824))
+- **deps:** update dependency @types/aws-lambda to v8.10.142 ([fbe202b](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/fbe202b92793bc75c74448fe9225cf4033b81251))
+- **deps:** update dependency @types/aws-lambda to v8.10.143 ([061dc82](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/061dc8206f88fa7f9f28c11556d0a5b5749d1820))
+- **deps:** update dependency @types/aws-lambda to v8.10.145 ([0a1e92b](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/0a1e92b01cf52ea5f29a9d68c15d4da8a772a2a7))
+- update aws-cdk-lib ([4d0954c](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/4d0954ce5a8b006d97fe550aa0c1bc94c1e66130))
+
+### 🧹 Chores
+
+- **deps:** lock file maintenance ([98b2278](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/98b227850f68866e44d716d475449293f798140d))
+- **deps:** lock file maintenance ([58e16c8](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/58e16c8c620682912830fd1dbbf1cee47024af1c))
+- **deps:** lock file maintenance ([35a70c7](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/35a70c7629f0e5d977629a248223627e2d209932))
+- **deps:** lock file maintenance ([427ac63](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/427ac632d839555090393d102f78fc0bd2ca34e0))
+- **deps:** lock file maintenance ([d8751af](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/d8751afe651d842dab4bd777b3f0c327db785bc1))
+- **deps:** update all non-major updates ([6a9d2c8](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/6a9d2c831d491645a6c6153ae2311c4db3948e26))
+- **deps:** update all non-major updates ([06feb9d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/06feb9dd04dbd042a36c3a93eaf5a13568cfa591))
+- **deps:** update all non-major updates ([8e5bc97](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/8e5bc97325079c3413acffc1ec99a9de9729291e))
+- **deps:** update all non-major updates ([3637eba](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/3637ebab31c3765ce5e00d45d0f5cc9b2d8926d3))
+- **deps:** update all non-major updates ([f8da69d](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/f8da69db8c966f154fd44e949ea4294995a1ddc9))
+- **deps:** update all non-major updates ([1c06e8f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/1c06e8f975e7d700f134fdb81fbaa23cfb4f2338))
+- **deps:** update all non-major updates ([3900d47](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/3900d47c78a2f0b38bf1d42f9563840b886472ee))
+- **deps:** update all non-major updates ([a83c4ee](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/a83c4ee5822e4aeb5a566dfff1656c29f8543c72))
+- **deps:** update all non-major updates ([812fbd0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/812fbd03c519e16728ae038e47bf92faa56a89de))
+- **deps:** update all non-major updates ([2ea050b](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/2ea050befe1c7d21f54f38a667c94dc898b1988b))
+- **deps:** update all non-major updates ([05a5f55](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/05a5f55368c59680840edd8d3150aae4baf0c6c7))
+- **deps:** update all non-major updates ([370e75e](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/370e75eec10b9d5b04b8e9012224c32dd890f7b9))
+- **deps:** update all non-major updates ([8084c16](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/8084c16ece9cb3955b5d2fe4bdbfea0ada0f6f9a))
+- **deps:** update all non-major updates ([a12373e](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/a12373efb2e39dd9440f4bf26c96506519ca3f2a))
+- **deps:** update all non-major updates ([94c9f59](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/94c9f59c2d94ab38546a337ca27041d407864796))
+- **deps:** update all non-major updates ([2106c70](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/2106c70ab331885204c1667aae3f261449c958a4))
+- **deps:** update all non-major updates ([24561b1](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/24561b1bdbc16904bdc186cf760f99dc28cf3746))
+- **deps:** update all non-major updates ([f1c405a](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/f1c405a7e3d6024e20b73ce65fd09e4c1656e771))
+- **deps:** update all non-major updates ([531f141](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/531f141ef5a811e302563fcc9a9ffafae78786af))
+- **deps:** update all non-major updates ([163cdc5](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/163cdc5b18d635bdc66a79aa7bd2187e902c69b3))
+- **deps:** update all non-major updates ([444373a](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/444373a172b80698516c15dad6386c3eb677fc64))
+- **deps:** update all non-major updates ([56852ac](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/56852acc81625267365f7e1d935c445837119c15))
+- **deps:** update all non-major updates ([0867654](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/08676544fdfe865593ce0eb9e254b765805615a6))
+- **deps:** update all non-major updates to v7.10.0 ([d3e54d0](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/d3e54d0d9cbc0eb898a5caf490c0fe7adc76fadb))
+- **deps:** update all non-major updates to v7.18.0 ([48b87b2](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/48b87b24e64c507131eadc9d264e23e100107293))
+- **deps:** update dependency aws-cdk-lib to v2.144.0 ([be546a9](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/be546a9c323c565e30e480ff8c56c6f8d808014d))
+- **deps:** update dependency aws-cdk-lib to v2.148.0 ([595b4da](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/595b4da0f1fcfaa8a374d00e61eeed2c881a6e47))
+- **deps:** update dependency aws-cdk-lib to v2.150.0 ([c9e79e5](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/c9e79e5d7e0559cd503f82d1740b02c093fc8c0b))
+- **deps:** update dependency aws-cdk-lib to v2.151.0 ([1966036](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/1966036ad8e7ef7400da9c2abea188557777dfa8))
+- **deps:** update dependency aws-cdk-lib to v2.154.0 ([ca3d398](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/ca3d3989f32dfc3e11d80a16ab6d2e457cee1a53))
+- **deps:** update dependency aws-cdk-lib to v2.156.0 ([5c14e2f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/5c14e2ff6632aa4dd8b469d84d5dd8c52854721e))
+- **deps:** update dependency aws-cdk-lib to v2.160.0 ([2a1e1ab](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/2a1e1abd739495be2c3518e1fd2d758d9023c954))
+- **deps:** update dependency prettier to v3.3.2 ([72ef90b](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commit/72ef90bc48c3f502e1f1d0d1da66e6c85d7670c0))
+
 ## [2.44.20](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/compare/v2.44.18...v2.44.20) (2024-05-20)
 
 ### 🐛 Bug Fixes
