@@ -34,7 +34,7 @@
     "@types/node": "22.9.0",
     "@typescript-eslint/eslint-plugin": "8.14.0",
     "@typescript-eslint/parser": "8.14.0",
-    "aws-cdk-lib": "2.166.0",
+    "aws-cdk-lib": "2.167.1",
     "commitizen": "4.3.1",
     "constructs": "10.4.2",
     "conventional-changelog-conventionalcommits": "8.0.0",
