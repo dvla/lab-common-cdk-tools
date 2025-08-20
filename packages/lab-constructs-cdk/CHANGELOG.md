@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.45.24 (2025-08-20)</small>
+
+- Merge pull request #456 in ETL/lab-common-cdk-tools from renovate/js-aws-cdk-and-constructs to main ([8797fd5](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commits/8797fd5)), closes [#456](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/issue/456)
+
 ## <small>2.45.22 (2025-08-18)</small>
 
 - Merge pull request #387 in ETL/lab-common-cdk-tools from renovate/js-aws-cdk-and-constructs to main ([5a2466f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commits/5a2466f)), closes [#387](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/issue/387)
