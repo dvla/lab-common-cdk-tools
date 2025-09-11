@@ -58,6 +58,7 @@ export const RestApi = (
     }
 
     const defaultProps = mergeProperties(RESTAPI_DEFAULTS, restApiProps);
+    let effectiveDefaultProps = defaultProps;
 
     if (!props?.deployOptions?.accessLogDestination) {
         const logDestination = new logs.LogGroup(scope, `${id}AccessLogGroup`, {
@@ -65,7 +66,7 @@ export const RestApi = (
             retention: logs.RetentionDays.ONE_WEEK,
         });
 
-        defaultProps.deployOptions = mergeProperties(defaultProps.deployOptions, {
+        const mergedDeployOptions = mergeProperties(defaultProps.deployOptions, {
             accessLogDestination: new apigateway.LogGroupLogDestination(logDestination),
             accessLogFormat: apigateway.AccessLogFormat.custom(JSON.stringify({
                 stage: '$context.stage',
@@ -84,6 +85,11 @@ export const RestApi = (
                 integration_latency: '$context.integration.latency'
             }))
         });
+
+        effectiveDefaultProps = {
+            ...defaultProps,
+            deployOptions: mergedDeployOptions,
+        };
     }
-    return new apigateway.RestApi(scope, id, mergeProperties(defaultProps, props));
+    return new apigateway.RestApi(scope, id, mergeProperties(effectiveDefaultProps, props));
 }
