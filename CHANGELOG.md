@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.45.27 (2025-09-11)</small>
+
+- fix: apigateway error ([3dc9644](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commits/3dc9644))
+- Merge pull request #458 in ETL/lab-common-cdk-tools from renovate/js-lock-file-maintenance to main ([37f494f](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commits/37f494f)), closes [#458](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/issue/458)
+
 ## <small>2.45.26 (2025-09-01)</small>
 
 - Merge pull request #459 in ETL/lab-common-cdk-tools from renovate/js-aws-cdk-and-constructs to main ([5cf4fa3](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/commits/5cf4fa3)), closes [#459](https://bitbucket.tooling.dvla.gov.uk/scm/etl/lab-common-cdk-tools/issue/459)
